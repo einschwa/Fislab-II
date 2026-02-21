@@ -398,6 +398,15 @@ body.sidebar-open .sidebar-overlay {
     padding: 0 16px;
 }
 
+@media (max-width: 640px) {
+    .page-container { margin: 88px auto 40px; padding: 0 12px; }
+    .page-header { padding: var(--spacing-md); }
+    .page-title { font-size: 1.8rem; }
+    .page-subtitle { font-size: 1rem; }
+    .sidebar { width: min(320px, 86vw); }
+    .form-grid { grid-template-columns: 1fr; }
+}
+
 .page-header {
     background: var(--bg-secondary);
     color: var(--text-primary);
@@ -1679,6 +1688,36 @@ body.dark #modul-content, body.dark .module-viewer-grid, body.dark .viewer-col, 
     margin-bottom: 1rem;
 }
 
+/* Prevent long text from overflowing the content column */
+#modul-content {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+#modul-content p,
+#modul-content li,
+#modul-content figcaption,
+#modul-content td,
+#modul-content th,
+#modul-content a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+#modul-content a { hyphens: auto; }
+
+/* MathJax (SVG output): keep display equations within viewport */
+#modul-content mjx-container[display="true"] {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Code blocks should scroll horizontally (not wrap) */
+.content-col pre { white-space: pre; }
+.content-col code { overflow-wrap: anywhere; word-break: break-word; }
+.content-col pre code { overflow-wrap: normal; word-break: normal; }
+
 /* Assistant cards (used in viewer right column) */
 .assistant-card {
     display: flex;
@@ -1712,6 +1751,29 @@ body.dark .assistant-card {
 #modul-alat-img + figcaption, img.modul-alat + figcaption, #modul-alat-img[alt] {
     text-align: center;
 }
+
+/* Mobile-friendly module content */
+@media (max-width: 640px) {
+    #modul-content img:first-of-type {
+        float: none;
+        display: block;
+        max-width: 100%;
+        margin: 0 auto 1rem;
+    }
+    #modul-content img:not(:first-of-type) { max-width: 100%; }
+    #modul-alat-img, img.modul-alat { max-width: 92%; }
+    #modul-content ul, #modul-content ol { padding-left: 1.5rem; }
+}
+
+/* Figures generated from LaTeX: keep readable on small screens */
+#modul-content figure[data-latex-placement] { width: min(70%, 720px); margin: 1rem auto; }
+@media (max-width: 640px) {
+    #modul-content figure[data-latex-placement] { width: 100%; }
+}
+
+/* Wrapfigure fragments from converted TeX */
+#modul-content .wrapfigure { max-width: 100%; }
+#modul-content .wrapfigure img { max-width: 100%; height: auto; display: block; }
 
 /* WhatsApp modal (reuse kontak styles) */
 .wa-modal-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); z-index: 1200 }
@@ -3156,29 +3218,47 @@ body.dark .admin-reminder-deadline { background: var(--bg-secondary-dark); }
 /* Module viewer 3-column layout */
 .module-viewer-grid {
     display: grid;
-    grid-template-columns: 20% 1fr 20%;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) minmax(220px, 280px);
     gap: 20px;
     align-items: start;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    min-width: 0;
 }
 .viewer-col { background: var(--card-bg); padding: 16px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(226, 232, 240, 0.8); /* Warna border abu-abu sangat muda */
-    border-radius: 12px;}
-.toc-col, .assistants-col { position: sticky; top: 90px; height: auto; overflow: visible; }
-.content-col { min-height: 90vh; }
-.assistant-card { display:flex; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-color); }
-.assistant-photo { width:48px; height:48px; border-radius:8px; object-fit:cover; }
-.assistant-name { font-weight:600; }
+    border-radius: 12px;
+    min-width: 0;
+}
+.toc-col, .assistants-col {
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+}
+.content-col { min-height: 90vh; min-width: 0; }
+#modul-content { min-width: 0; }
 
 /* TOC styles */
 #toc-list ul { list-style: none; padding-left: 0; }
 #toc-list li.h2 { font-weight:700; margin:8px 0; }
 #toc-list li.h3 { margin-left:12px; color:var(--text-primary); }
-#toc-list a { text-decoration:none; color:inherit; }
+#toc-list a { text-decoration:none; color:inherit; display:block; padding: 6px 8px; border-radius: 10px; }
+#toc-list a:hover { background: rgba(59,130,246,0.08); }
+body.dark #toc-list a:hover { background: rgba(59,130,246,0.16); }
 
 /* LaTeX content tweaks */
-.content-col table { width:100%; border-collapse:collapse; margin:12px 0; }
+.content-col table {
+        width: 100%;
+    max-width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    table-layout: fixed;
+}
 .content-col table th, .content-col table td { border:1px solid var(--border-color); padding:8px; }
+.content-col table th, .content-col table td { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .content-col blockquote { border-left:3px solid var(--accent-primary); padding:8px 12px; background: rgba(59,130,246,0.04); }
 .content-col pre, .content-col code { background: rgba(0,0,0,0.04); padding:8px; border-radius:6px; overflow:auto; }
 
@@ -3186,6 +3266,27 @@ body.dark .admin-reminder-deadline { background: var(--bg-secondary-dark); }
 @media (max-width: 900px) {
   .module-viewer-grid { grid-template-columns: 1fr; }
   .toc-col, .assistants-col { position: static; height: auto; }
-  .toc-col, .assistants-col { display: none; }
+    .toc-col, .assistants-col { display: block; max-height: 44vh; overflow: none; }
+}
+
+@media (max-width: 640px) {
+        .module-viewer-grid { gap: 12px; }
+        .viewer-col { padding: 12px; }
+        .module-footer { flex-wrap: wrap; }
+        .module-footer .btn, .module-footer .back-btn { flex: 1 1 220px; }
+        .module-footer .back-btn { margin-bottom: 0; }
+
+    /* tighter tables on small screens */
+    .content-col table { font-size: 0.92rem; }
+    .content-col table th, .content-col table td { padding: 6px; }
+}
+
+@media (max-width: 420px) {
+    .page-container { padding: 0 10px; }
+    .viewer-col { padding: 10px; }
+    #modul-content ul, #modul-content ol { padding-left: 1.25rem; }
+
+    /* If inline math is wider than the screen, allow scroll instead of overflow */
+    #modul-content mjx-container { max-width: 100%; overflow-x: auto; }
 }
 
