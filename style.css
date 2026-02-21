@@ -3241,7 +3241,7 @@ body.dark .admin-reminder-deadline { background: var(--bg-secondary-dark); }
 /* TOC styles */
 #toc-list ul { list-style: none; padding-left: 0; }
 #toc-list li.h2 { font-weight:700; margin:8px 0; }
-#toc-list li.h3 { margin-left:12px; color:var(--text-primary); }
+#toc-list li.h3 { margin-left:12px; font-weight:200; }
 #toc-list a { text-decoration:none; color:inherit; display:block; padding: 6px 8px; border-radius: 10px; }
 #toc-list a:hover { background: rgba(59,130,246,0.08); }
 body.dark #toc-list a:hover { background: rgba(59,130,246,0.16); }
