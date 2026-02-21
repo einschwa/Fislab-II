@@ -25,27 +25,48 @@
       margin-top:.5rem;
     }
     /* Layout untuk pengolahan: left sidebar dengan 2 panel terpisah (TOC + Tools), content di kanan */
-    #module-viewer.module-viewer-grid {
-      display: grid;
-      grid-template-columns: minmax(200px, 280px) 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem;
+    .module-viewer-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) minmax(220px, 280px);
+        gap: 20px;
+        align-items: start;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        min-width: 0;
     }
-    #toc.viewer-col {
-      grid-column: 1;
-      grid-row: 1;
+    .viewer-col { background: var(--card-bg); padding: 16px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(226, 232, 240, 0.8); /* Warna border abu-abu sangat muda */
+        border-radius: 12px;
+        min-width: 0;
     }
-    #assistants.viewer-col {
-      grid-column: 1;
-      grid-row: 2;
+    .toc-col, .assistants-col {
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 120px);
+        overflow: auto;
     }
-    #modul-content.viewer-col {
-      grid-column: 2;
-      grid-row: 1 / 3;
+
+    /* Responsif: stack panel di layar kecil */
+    @media (max-width: 900px) {
+      #module-viewer.module-viewer-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      #toc.viewer-col,
+      #assistants.viewer-col,
+      #modul-content.viewer-col {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      #toc, #assistants {
+        max-height: 50vh;
+        overflow-y: none;
+      }
     }
-    #toc, #assistants {
-      overflow-y: auto;
-      max-height: calc(200vh - 300px);
+
+    @media (max-width: 640px) {
+      figure[data-latex-placement]{
+        width: 100%;
+      }
     }
   </style>
   <script src="firebase-config.js"></script>
@@ -72,17 +93,115 @@
     </header>
     <div class="top-border-box" aria-hidden="true"></div>
     <aside id="sidebar" class="sidebar" aria-label="Sidebar navigasi">
-      <div class="side-title">Menu</div>
-      <nav>
-        <a href="profile.html" id="nav-profile"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="label">Profile</span></a>
-        <a href="home.html" id="nav-home"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></span><span class="label">Dashboard</span></a>
-        <a href="modul.html" id="nav-modul"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/></svg></span><span class="label">Modul Praktikum</span></a>
-        <a href="kontak.html" id="nav-contacts"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span><span class="label">Kontak Asisten</span></a>
-        <a href="#" id="nav-logout"><span class="icon"><svg viewBox="0 0 24 24"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/><path d="M14 16l4-4-4-4"/><path d="M8 12h10"/></svg></span><span class="label">Keluar</span></a>
-      </nav>
+        <div class="side-title">Menu</div>
+        <nav>
+            <a href="profile.html" id="nav-profile">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span class="label">Profile</span>
+            </a>
+            <a href="home.html" id="nav-home">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="admin.html" id="nav-admin" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard Admin</span>
+            </a>
+            <a href="modul.html" id="nav-modul" class="active">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="8" height="16" rx="1"/>
+                        <rect x="13" y="4" width="8" height="16" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Modul Praktikum</span>
+            </a>
+            <a href="kontak.html" id="nav-contacts">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                        <path d="M3 7l9 6 9-6"/>
+                    </svg>
+                </span>
+                <span class="label">Kontak Asisten Laboratorium</span>
+            </a>
+            <a href="nilai.html" id="nav-nilai" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Nilai Praktikum</span>
+            </a>
+            <a href="penilaian.html" id="nav-penilaian" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Penilaian Praktikum</span>
+            </a>
+            <a href="penjadwal.html" id="nav-penjadwalan" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Penjadwalan</span>
+            </a>
+            <a href="jadwal.html" id="nav-schedule">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="17" rx="1"/>
+                        <path d="M8 2v4M16 2v4M3 10h18"/>
+                    </svg>
+                </span>
+                <span class="label">Jadwal Praktikum</span>
+            </a>
+            <a href="#" id="nav-logout">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+                        <path d="M14 16l4-4-4-4"/>
+                        <path d="M8 12h10"/>
+                    </svg>
+                </span>
+                <span class="label">Keluar</span>
+            </a>
+        </nav>
     </aside>
     <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
     <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
     </button>
 
     <main class="page-container">
