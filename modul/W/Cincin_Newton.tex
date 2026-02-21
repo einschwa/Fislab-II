@@ -1,0 +1,208 @@
+\praktikum[W5]{Cincin Newton}
+\subsection{Pendahuluan}
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Gambar/Newtonringsillustration.png} 
+\end{wrapfigure}
+    \textit{“Micrographia”} sebuah publikasi berbahasa inggris karya Robert Hooke pada tahun 1664 Masehi. Robert Hooke, seorang jenius penemu sel dan merumuskan pegas sedang tidak punya pekerjaan dan mengamati pola interferensi yang melingkar. Pola tersebut sangat unik, rangkaian-rangkaian lingkaran konsentris sepusat dengan selang seling antara gelap dan terang. Namun sayangnya, Hooke tidak dapat menjelaskan bagaimana fenomena ini dapat terjadi. 
+	Beberapa tahun kemudian, jenius Newton yang jenuh menekuni Gravitasi mencoba nafas baru dengan melakukan percobaan ini. Newton menganggap fenomena ini aneh dan bisa dibilang fenomena yang bergaya. Cincin-cincin ini muncul akibat cahaya yang ’bergaduh’ satu sama lain di permukaan lensa cembung dan kaca datar. Ceritanya seperti dua orang yang memantulkan diri dari cermin di ruang yang sempit, tapi alih-alih terbiaskan oleh Kaca lensa, mereka menciptakan pola-pola terang dan gelap yang tak biasa. Cahaya yang masuk ke permukaan lensa punya dua pilihan: dipantulkan oleh kaca atau melompat keluar dari bawah lensa. Ketika dua pantulan itu bertemu, mereka tidak cuma bertukar salam, tapi justru ‘berkelahi’ menciptakan pola terang dan gelap yang bisa dilihat sebagai cincin-cincin misterius di bawah cahaya yang dipantulkan. Semakin rapat jarak antara lensa dan kaca,semakin rapi mereka berbaris.
+
+
+
+
+\subsection{Tujuan}
+Tujuan dari praktikum ini adalah:
+\begin{enumerate}
+    \item Memahami bagaimana proses Pembentukan Cincin Newton.
+    \item Mengukur jari-jari kelengkungan lensa yang digunakan dalam percobaan.
+    \item Mengetahui dan memahami parameter-parameter yang mempengaruhi pembentukan Cincin Newton.
+\end{enumerate}
+\subsection{Alat dan Bahan}
+Peralata yang digunakan praktikum ini adalah :
+
+\begin{longtable}{ccc}
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endfirsthead % Bagian header tabel untuk halaman pertama
+
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endhead % Bagian header tabel untuk halaman berikutnya
+
+\hline
+\bottomrule
+\endfoot % Bagian footer tabel untuk halaman berikutnya
+Laser Merah (650 nm) & 1 & Sumber cahaya koheren \\
+Laser Hijau (560 nm) & 1 & Sumber cahaya koheren \\
+USB cable & 1 & Kabel penghubung untuk laser \\
+Adaptor & 1 & - \\
+Mikroskop(lensa MO) & 1 & untuk mengarahkan cahaya laser \\
+Cermin & 1 & Cermin setengah reflektif\\
+Set Lensa dan Plat kaca & 1 set &  menghasilkan interferensi \\
+Layar & 1 & Layar untuk proyeksi pola interferensi \\
+Fotodetektor & 1 & - \\
+Amplifier & 1 & Penguat sinyal fotodetektor \\
+Multimeter & 1 & Alat ukur tegangan sinyal listrik \\
+Penggaris & 1 & Alat pengukur jarak dan dimensi \\
+\end{longtable}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Gambar/cincinnewtonskema1.png}
+    \caption{Skema alat Praktikum Cincin Newton}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Gambar/cincinnewtonskema2.png}
+    \caption{skema alat jika dilihat dari depan}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Pre-Lab}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Gambar/Cincin_Newton_Prelab.png}
+    \caption{ilustrasi lensa}
+    \label{fig:enter-label}
+\end{figure}
+\begin{enumerate}
+    \item Perhatikan diagram pada Gambar 8. Tentukan panjang $d$ dalam variabel $a$, $b$, dan $c$! dan tentukan juga nilai $d$ jika $c<<d$
+    \item Berdasarkan sifat cahaya yang anda pelajari ketika SMA, ketika cahaya masuk ke dalam medium yang berbeda, apakah kecepatanya menjadi berkurang, tetap, atau bertambah? Jelaskan jawaban anda!
+    \item Mengapa cahaya yang melewati udara tampak menempuh jarak yang lebih pendek dibandingkan ketika cahaya melewati medium yang lebih rapat dengan ketebalan yang sama? Apa besaran yang mempengaruhinya?
+    \item Apa yang anda ketahui tentang interferensi? Bagaimana interferensi terjadi dan apa saja syarat-syarat supaya terjadinya interferensi?
+    \item  Apa yang anda ketahui tentang Cincin Newton? Bagaimana cincin newton bisa terbentuk? Gambarkan lensa plano-konveksnya dan jelaskan proses terjadinya interferensi sehingga terbentuk pola cincin gelap terang!
+    \item Apa yang anda ketahui tentang jari-jari lingkaran? Gunakan konsep jari-jari lingkaran untuk menentukan konsep \texit {Radius of curvature}! Menurut anda, seberapa penting \texit {Radius of curvature} pada percobaan ini?
+    \item Lihat gambar 9, terdapat dua trapesium yang membentuk sebuah trapesium. Dengan menggunakan konsep kesebangunan, buktikan bahwa besar dari nilai $h$ adalah 
+    \begin{equation*}
+        h = \frac{bh_1-ah_2}{b-a}
+    \end{equation*}
+    \item Dengan menggunakan geometri dari lensa plano konveks, buktikan bahwa persamaan untuk menentukan jari-jari kelengkungan pada cincin newton adalah
+    \begin{equation*}
+        R = \frac{D_{m+n}^{2} - D_{m}^{2}}{4\,n\,\lambda}
+    \end{equation*}
+    \item Buktikan bahwa intensitas cahaya pada cincin newton adalah 
+    \begin{equation*}
+    \frac {I(\theta)}{I_{max}}= cos^2 \frac{\pi r^2}{\lambda R}
+    \end{equation*}
+    \begin{figure}[!ht]
+    \centering
+    \resizebox{0.4\textwidth}{!}{%
+    \begin{circuitikz}
+    \tikzstyle{every node}=[font=\normalsize]
+    \draw (3.75,10) to[short] (7.5,13.75);
+    \draw (3.75,10) to[short] (3.75,8.75);
+    \draw (5.75,12) to[short] (5.75,8.75);
+    \draw (7.5,13.75) to[short] (7.5,8.75);
+    \draw (3.75,8.75) to[short] (7.5,8.75);
+    \draw [<->, >=Stealth] (3.75,8.5) -- (5.75,8.5);
+    \node [font=\normalsize] at (6,8.5) {a};
+    \draw [<->, >=Stealth] (3.75,9) -- (7.5,9);
+    \node [font=\normalsize] at (7.75,9) {b};
+    \draw [->, >=Stealth] (3.25,8.75) -- (3.25,10);
+    \draw [->, >=Stealth] (5.25,8.75) -- (5.25,11.25);
+    \draw [->, >=Stealth] (8.25,8.75) -- (8.25,13.75);
+    \node [font=\normalsize] at (4.75,9.75) {$h_1$};
+    \node [font=\normalsize] at (8,10.75) {$h_1$};
+    \node [font=\normalsize] at (2.75,9.25) {$h$};
+    \end{circuitikz}
+    }%
+    \caption{soal pre-lab no 7}
+    \label{fig:enter-label}
+    \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\linewidth]{Gambar/cincin_Newton5_prelab.png}
+    \caption{ilustrasi cahaya pada lensa tipis}
+    \label{fig:enter-label}
+\end{figure}
+    \item Gambarkan semua kemungkinan jalur cahaya yang ditunjukkan pada Gambar a dan b. Panah merah adalah cahaya yang datang.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\linewidth]{Gambar/cincin_newton4.png}
+        \label{fig:enter-label}
+    \end{figure}
+    
+\end{enumerate}
+\subsection{In-Lab}
+\subsubsection*{Instalasi Peralatan}
+\begin{enumerate}
+    \item Hubungkan amplifier ke fotodetektor dan multimeter dengan patch cord.
+    \item Pasang layar pada platform kecil dan letakkan fotodetektor di belakangnya.
+    \item Tempatkan sumber laser pada dudukannya dan hubungkan ke adaptor daya.
+    \item Posisikan lensa MO di depan laser menggunakan slide mount.
+    \item Letakkan \textit{beam splitter} di antara lensa MO dan lensa plano-konveks.
+    \item Gunakan sekrup pada pelat untuk menyesuaikan pola cincin Newton agar pusatnya tepat.
+    \item Pastikan laser dan sistem lensa sejajar dengan detektor.
+    \infobox{Tempatkan alat diatas di ruangan gelap untuk menghindari pencahayaan luar}
+\end{enumerate}
+
+\subsubsection*{Percobaan Pengukuran Jari-Jari Kelengkungan}
+\begin{enumerate}
+    \item Siapkan alat dan bahan kemudian susun sesuai dengan skema alat yang telah tersedia pada modul. 
+    \item Pastikan cincin berada pada pusat fotodetektor.
+    \item Gunakan jarak beam splitter dengan layar 30 cm dengan posisi beam splitter telah ditandai pada alat (ikuti arahan asisten).
+    \item Lakukan pengukuran diameter cincin sampai pada cincin luar yang bisa diukur. Pengukuran diameter cincin dapat dilakukan dengan memutar knob penggaris pada fotodetektor. 
+    \item Lakukan kembali prosedur nomor 4 dengan jarak beam splitter dengan layar sebesar 35 cm. 
+    \item Catat data diamater yang anda dapatkan dan ulangi percobaan anda sejumlah yang disarankan asisten anda!
+\end{enumerate}
+
+% \subsubsection*{Instalasi Alat}
+% \begin{itemize}
+%     \item Fotodetektor dipasang di belakang layar tempat pola cincin Newton muncul.
+%     \item Amplifier digunakan untuk memperkuat sinyal dari fotodetektor.
+%     \item Multimeter digunakan untuk membaca tegangan dari fotodetektor.
+% \end{itemize}
+
+\subsubsection*{Percobaan Pengukuran Intensitas Cahaya Cincin Newton}
+\begin{enumerate}
+    \item Siapkan alat dan bahan kemudian susun sesuai dengan skema alat yang telah tersedia pada modul. 
+    \item Pastikan cincin berada pada tengah fotodetektor.
+    \item Gunakan jarak beam splitter dengan layar sebesar 30 cm.
+    \item Nyalakan amplifier dan kemudian lakukan pengkuran intensitas cahaya dengan langkah kecil (misal 1 mm). 
+    \item Lakukan Pengukuran ke jari-jari sebelah kanan dan kiri secara bergantian. Lalu catat data anda setiap satu langkah menggeser.
+\end{enumerate}
+\subsection{Analisis Data}
+\begin{enumerate}
+    \item Catat data anda pada tabel sehingga memudahkan untuk analisis data, ubah semua data yang didapatkan ke satuan yang sama.
+    \item Hitung nilai Diameter sebenarnya menggunakan kedua data diamater yang anda ukur dengan jarak yang berbeda. Nilai diameter sebenarnya dapat dihitung menggunakan persamaan 
+    \begin{equation*}
+        h= \frac {bh_1-ah_2}{b-a}
+    \end{equation*}
+    dengan $a$ adalah $30$ cm, $b$ adalah $35$ cm, $h_1$ adalah diameter cincin saat jarak beam splitter sebesar $a$ dan $h_2$ adalah diameter cincin saat jarak beam splitter sebesar $b$.
+    \item Berdasarkan hasil perhitungan nilai diameter cincin yang sebenarnya, Hitung nilai jari-jari kelengkungan dari lensa menggunakan persamaan
+    \[
+    R = \frac{(D_{m+n}^2 - D_m^2) }{4n\lambda}
+    \]
+    di mana:
+    \begin{itemize}
+        \item \(D_m\) adalah diameter cincin ke-\(m\),
+        \item \(n\) adalah jumlah cincin yang digunakan dalam perhitungan, dan
+        \item \(\lambda\) adalah panjang gelombang cahaya laser.
+    \end{itemize}
+    \item Plot hasil tegangan terhadap posisi diatas dan bandingkan terhadap plot Intensitas sebenarnya (dengan asumsi bahwa Tegangan terhadap intensitas adalah sebanding) dengan persamaannya yaitu 
+    \begin{equation*}
+        \frac{I(\theta)}{I_0}= \cos^2{\frac{\pi r^2}{\lambda R}}
+    \end{equation*}
+    dimana $r$ adalah posisi titik tertentu terhadap pusat dan $R$ adalah jari-jari kelengkungan lensa.
+    \item Cari error intensitas diatas dan amati bahwa tegangan naik turun karena variasi intensitas cahaya pada pola cincin Newton.
+\end{enumerate}
+\subsection{Post-Lab}
+\begin{enumerate}
+    \item Apa yang menyebabkan interferensi film tipis dapat membentuk pola cincin konsentris dan bagaimana fenomena tersebut dapat terjadi pada percobaan ini?
+   \item Mengenai data yang didapatkan dan jari jari kelengkungan yang sudah dihitung. Apakah data Anda masuk akal? Jelaskan mengapa demikian!
+    \item Bagaimana jika sumber cahaya yang digunakan memiliki panjang gelombang yang berbeda? apa saja yang akan berubah?
+    \item Bagaimana jika film tipis-nya kaca, melainkan jenis bahan lain? apa saja yang akan berubah? bagaimana indeks bias dari bahan lain tersebut memengaruhi perubahannya?
+    % \item Dari percobaan yang dilakukan, jelaskan mengenai OPL dan OPD!
+    % Dalam mencari  jari-jari kelengkungan, orde proposal menggunakan $D^2$, mengapa demikian? 
+    \item Apa saja error yang terdapat pada percobaan ini? Bagaimana caranya agar eror tersebut dapat diminimalkan?
+\end{enumerate}
+
+
+
+
+
+
+

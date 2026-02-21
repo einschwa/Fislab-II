@@ -1,0 +1,109 @@
+\praktikum[MP3]{Histeresis Feromagnetik}
+\subsection{Pendahuluan}
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Gambar/freepik__the-style-is-candid-image-photography-with-natural__89496 (1).jpg} 
+\end{wrapfigure}
+	Pernahkah anda pergi Jalan-jalan ke Bali dengan Bus dan melewati Jalur Pantura? Jika pernah, anda akan melihat di sebelah kiri jalan Pembangkit listrik raksasa Paiton. Listrik yang dibangkitkan memiliki potensial bergiga Volt. Tentu saja tidak bisa langsung didistribusikan ke masyarakat. Disinilah Peran Transformator, mesin pengubah energi listrik yang terkesan serius. Transformator mempunyai kebiasaan unik. Dia suka mengulang proses magnetisasi berulang-ulang. Tentu saja ini membuat domain dalam atom merasa bingung dan stress. Sehingga energi yang harusnya ditransformasikan dengan efisien menjadi terbuang sia-sia. 
+	Penyebab dari hal ini adalah akibat dari perilaku dari histeresis feromagnetik yang merupakan bahan dari inti transformator. Ketika lilitan kawat yang melilingi inti transformator sudah tidak lagi aktif lagi, bahan feromagnetik ini masih tetap menyimpan ingatan medan magnet sebelumnya. Hasilnya adalah kita perlu memberi dorongan tambahan untuk mendorong medan magnet sisa tadi. Semakin gemuk kurva histeresis, semakin besar energi dorongan yang dibutuhkan. Sehingga perlu pemilihan bahan yang tepat untuk pembuatan inti transformator. 
+
+
+\subsection{Tujuan}
+Tujuan dari Praktikum adalah
+\begin{enumerate}
+    \item Memahami peristiwa histeresis dan hubunganya terhadap pemilihan bahan pada inti transformator. 
+    \item Menentukan Nilai Remanensi, koersivitas, dan Saturasi dari Bahan feromagnetik.
+    \item Menentukan dan Menghitung Energi yang hilang dalam proses magnetisasi ulang
+\end{enumerate}
+\subsection{Alat dan Bahan}
+Peralatan yang digunakan dalam praktikum ini adalah:
+\begin{longtable}{ccc}
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endfirsthead % Bagian header tabel untuk halaman pertama
+
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endhead % Bagian header tabel untuk halaman berikutnya
+
+\hline
+\bottomrule
+\endfoot % Bagian footer tabel untuk halaman berikutnya
+
+
+Power-CASSY atau Function Generator S12 & 1 & - \\
+        Sensor-CASSY & 1 & - \\
+        CASSY Lab 2 (Software untuk analisis data) & 1 & - \\
+        Inti U dengan yoke (feromagnetik) & 1 & - \\
+        Perangkat penjepit dengan pegas & 1 & - \\
+        Dua kumparan dengan 500 lilitan & 2 & - \\
+        Resistor STE 1$\Omega$, 2W & 1 & - \\
+        PC dengan Windows XP yang lebih tinggi (untuk analisis data) & 1 & - \\
+
+\end{longtable}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Gambar/Alat_Trafo.png}
+    \caption{Skema alat untuk Hysteresis feromagnetik}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Pre-Lab}
+\begin{enumerate}
+    \item Berdasarkan kekuatan magnetnya, ada berapa sifat material? Bagaimana suatu bahan dapat dikatakan memiliki sifat Diamagnetik, Paramagnetik, dan Feromagnetik? Sertakan penjelasan anda menggunakan Bilangan kuantum magnetik dan pasangan spin elektron valensi!
+    \item Apa yang kamu ketahui tentang Histeresis dan Proses Magnetisasi? Bagaimana hubungan dari keduanya? 
+    \item Mengapa peristiwa histeresis dapat terjadi?
+    \item Setelah anda mengetahui apa itu histeresis, jelaskan interpretasi dari kurva histeresis magnetik! Apa yang menyebabkan terbentuknya loop seperti daun pada kurva fungsi  $B(H)$?
+    \item Apa yang kamu ketahui tentang nilai Remanensi, Koersivitas, dan titik saturasi pada proses magnetisasi dan histeresis Feromagnetik?
+    \item Mengapa bahan dengan remanensi yang rendah dan koersivitas rendah cocok untuk inti transformator? Jelaskan jawabanmu.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\linewidth]{Gambar/prelab_hysteresis.png}
+        \caption{soal prelab no 5}
+        \label{fig:enter-label}
+    \end{figure}
+    \item Jika diketahui sebuah Material feromagnetik (inti magnet) pada gambar 5 trafo yang memiliki keliling rata rata $L$, Luas penampang inti $A$ dan masing masing sisi yang berlawanan memiliki lilitan $N_1$ dan $N_2$. kemudian diberi medan magnet eksternal sebesar $H$, Berapa energi yang hilang pada proses ini? Petunjuk: Hitung nilai integral dari fluks terhadap arus $\int \Phi \cdot dI$ dan kemudian gunakan $\int B\cdot dH = \frac{E_{loss}}{V}$
+    \item Mengapa luas loop histeresis yang kecil lebih diinginkan dalam inti Komponen transformator?
+    \item Sebutkan dua jenis bahan feromagnetik yang sering digunakan dalam transformator dan jelaskan alasan pemilihannya!
+    \item Selain transformator, sebutkan dan jelaskan aplikasi lain dari bahan feromagnetik yang memanfaatkan fenomena histeresis dari yang kamu ketahui!
+\end{enumerate}
+\subsection{In-Lab}
+\subsubsection*{Instalasi Alat}
+\begin{enumerate}
+    \item Merangkai rangkaian percobaan sesuai dengan diagram di dalam modul.
+    \item Jika menggunakan Power-CASSY, gunakan perangkat ini untuk memberikan arus pada kumparan primer.
+    \item Jika menggunakan Function Generator, atur sinyal menjadi gelombang gigi gergaji dengan frekuensi sekitar 0.1 Hz dan amplitudo 2V.
+    \item Pastikan sensor CASSY terhubung ke komputer dan pengaturan awal sudah dimuat di CASSY Lab 2.
+    \Step{Sebelum melakukan Praktikum, pastikan inti Trafo tidak memiliki sifat magnet. Oleh karena itu lakukan demagnetisasi dengan cara memukul beberapa kali inti ini dengan alatnya pada saat set arus sama dengan nol}
+\end{enumerate}
+
+\subsubsection*{Pengukuran dengan CASSY Lab 2}
+\begin{enumerate}
+
+    \item Gunakan komputer yang tersedia dan software CASSY Lab 2 dan lakukan pengukuran. Sebelum melakukan pengukuran, pastikan inti trafo tidak mempunyai sifat magnet. Jika masih mempunyai sifat magnet, pukul inti trafo untuk menghilangkan sifat magnetnya.
+    \item Jika hasil pengukuran menunjukan kurva berada pada kuadran yang slaah, balik konseksi pada salah satu kumparan. 
+    \item Jika terdapat error pada pengukuran karena rentang yang kecil, sesuaikan lagi rentang pengukuran pada software CASSY Lab 2. 
+\end{enumerate}
+\subsection{Analisis Data}
+\begin{enumerate}
+    \item Dari data yang anda dapatkan, hitung luasan loop kurva yang menggambarkan energi yang hilang akibat magnetisasi ulang.
+    \item Gunakan fitur "peak integration" di CASSY Lab 2 untuk menghitung energi yang hilang atau import file hasil perhitungan ke MATLAB atau Python
+    \item Plot data yang anda dapatkan sesuai kurva $B(H)$ dan bandingkan dengan literatur. 
+    \item Dari kurva yang anda dapatkan, tentukan nilai remanensi, koersivitas, dan titik saturasinya. Dari data tersebut hitunglah nilai energi loss menggunakan pre lab nomor 7 yang telah anda kerjakan sebelumnya. (Tanyakan pada asisten terkait data-data yang dibutuhkan)
+
+\end{enumerate}
+\subsection{Post-Lab}
+\begin{enumerate}
+    \item Ketika anda melakukan pengukuran, loop tidak serta merta terbentuk melainkan terbentuk perlahan bergerak dari satu titik ke titik lain. Jelaskan makna dari aliran loop yang bergerak pada kurva yang anda dapat!
+    \item Bagaimana interpretasi dari kurva loop yang anda dapatkan? Bagaimana luas loop histeresis berhubungan dengan energi yang hilang akinat magnetisasi ulang?
+    \item Bagaimana pengaruh dari jumlah lilitan dan sifat bahan feromagnetik (seperti sudut kemiringan kurba B(H) dapat mempengaruhi bentuk kurva histeresis? 
+    \item Mengapa jumlah lilitan pada kedua kumparan tidak sama? Jelaskan!
+    \item Bagaimana anda mendapatan nilai koersivitas, remanensi, dan titik saturasi dari kurva saturasi dari kurva yang terbentuk?
+    \item Apa interpretasi fisis dari ketiga nilai tersebut? Dan apa saja faktor yang mempengaruhi besar kecilnya nilai koersivitas dan nilai remanensi? Bagaimana nilai koersivitas dan remanensi bisa mempengaruhi aplikasinya dalam perangkat elektromagnetik?
+    \item Jika bahan feromagnetik diganti dengan bahan paramagnetik, bagaimana pengaruhnya terhadap kurva histeresis dan energi yang hilang pada komponen inti transformator? 
+    \item Apa faktor error pada percobaan anda? Dan bagaimana karakteristik bahan feromagnetik yang ideal untuk digunakan dalam transformator?
+\end{enumerate}

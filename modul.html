@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Modul Praktikum - FISLAB II</title>
+    <link rel="icon" href="favicon.svg" type="image/svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+    <style>
+        .modul-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modul-popup-overlay.is-open {
+            display: flex;
+        }
+        .modul-popup-box {
+            background: var(--card-bg, #fff);
+            border-radius: var(--radius-lg, 16px);
+            padding: 1.5rem; /* Menambah padding agar isi tidak terlihat sesak di kotak besar */
+            
+            /* Perubahan Ukuran ke PX */
+            width: 406px;
+            height: 398px;
+            
+            /* Hapus atau komentari baris di bawah ini jika sebelumnya ada */
+            /* aspect-ratio: 2 / 1; */
+            /* width: min(300px, 85vw); */
+
+            max-height: 90vh; /* Menjaga agar tidak terpotong di layar kecil */
+            max-width: 95vw;  /* Responsif untuk mobile */
+            
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem; /* Sedikit memperlebar jarak antar elemen */
+            overflow-y: auto;
+        }
+
+        /* Penyesuaian opsional agar gambar di dalamnya ikut membesar proporsional */
+        .modul-popup-box img {
+            max-height: 220px; /* Icon avatar diperbesar agar lebih terlihat */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .modul-popup-box p {
+            font-size: 1rem; 
+            color: var(--text-primary, #0f172a);
+            margin: 0;
+            line-height: 1.3; /* Ukuran teks sedikit diperbesar agar mudah dibaca di kotak besar */
+        }
+        .modul-popup-close {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+            background: var(--accent-primary, #3b82f6);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-md, 12px);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .modul-popup-close:hover {
+            background: var(--accent-hover, #2563eb);
+        }
+    </style>
+</head>
+<body>
+    <header class="top-left-header" aria-label="Brand header">
+        <button id="hamburger" class="hamburger" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <a href="home.html" class="header-brand-link" aria-label="Kembali ke Home">
+        <span class="header-logo">Φ</span>
+            <span class="header-text">FISLAB II</span>
+        </a>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <aside id="sidebar" class="sidebar" aria-label="Sidebar navigasi">
+        <div class="side-title">Menu</div>
+        <nav>
+            <a href="profile.html" id="nav-profile">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span class="label">Profile</span>
+            </a>
+            <a href="home.html" id="nav-home">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="admin.html" id="nav-admin" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard Admin</span>
+            </a>
+            <a href="modul.html" id="nav-modul" class="active">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="8" height="16" rx="1"/>
+                        <rect x="13" y="4" width="8" height="16" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Modul Praktikum</span>
+            </a>
+            <a href="kontak.html" id="nav-contacts">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                        <path d="M3 7l9 6 9-6"/>
+                    </svg>
+                </span>
+                <span class="label">Kontak Asisten Laboratorium</span>
+            </a>
+            <a href="nilai.html" id="nav-nilai" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Nilai Praktikum</span>
+            </a>
+            <a href="penilaian.html" id="nav-penilaian" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Penilaian Praktikum</span>
+            </a>
+            <a href="penjadwal.html" id="nav-penjadwalan" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Penjadwalan</span>
+            </a>
+            <a href="jadwal.html" id="nav-schedule">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="17" rx="1"/>
+                        <path d="M8 2v4M16 2v4M3 10h18"/>
+                    </svg>
+                </span>
+                <span class="label">Jadwal Praktikum</span>
+            </a>
+            <a href="#" id="nav-logout">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+                        <path d="M14 16l4-4-4-4"/>
+                        <path d="M8 12h10"/>
+                    </svg>
+                </span>
+                <span class="label">Keluar</span>
+            </a>
+        </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+    <main class="page-container">
+        <section class="page-header" aria-labelledby="page-title">
+            <h1 id="page-title" class="page-title">Modul Praktikum</h1>
+            <p class="page-subtitle">Pilih modul praktikum yang ingin Anda buka</p>
+        </section>
+
+        <div class="modul-grid">
+            <div class="modul-card" onclick="openModul('Data')">
+                <div class="modul-header">
+                    <div class="modul-icon">D</div>
+                    <h3 class="modul-title">Pengolahan Data</h3>
+                </div>
+                <p class="modul-description">
+                    Informasi pengantar tentang pengolahan data.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('MP1')">
+                <div class="modul-header">
+                    <div class="modul-icon">MP1</div>
+                    <h3 class="modul-title">Konstanta Planck</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang konstanta Planck.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('MP2')">
+                <div class="modul-header">
+                    <div class="modul-icon">MP2</div>
+                    <h3 class="modul-title">Tetes Minyak Milikan</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang tetes minyak Milikan.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('MP3')">
+                <div class="modul-header">
+                    <div class="modul-icon">MP3</div>
+                    <h3 class="modul-title">Histeresis Ferromagnetik</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang histeresis ferromagnetik.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('MP4')">
+                <div class="modul-header">
+                    <div class="modul-icon">MP4</div>
+                    <h3 class="modul-title">Radioaktif dan Peluruhan Waktu Paruh</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang radioaktif dan peluruhan waktu paruh.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('MP5')">
+                <div class="modul-header">
+                    <div class="modul-icon">MP5</div>
+                    <h3 class="modul-title">Eksperimen Franck-Hertz</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang eksperimen Franck-Hertz.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('W1')">
+                <div class="modul-header">
+                    <div class="modul-icon">W1</div>
+                    <h3 class="modul-title">Difraksi Celah Tunggal</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang difraksi celah tunggal.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('W2')">
+                <div class="modul-header">
+                    <div class="modul-icon">W2</div>
+                    <h3 class="modul-title">Determinasi Sudut Brewster</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang determinasi sudut Brewster.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+            <div class="modul-card" onclick="openModul('W3')">
+                <div class="modul-header">
+                    <div class="modul-icon">W3</div>
+                    <h3 class="modul-title">Difraksi Cahaya Lampu</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang difraksi cahaya lampu.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+
+            <div class="modul-card" onclick="openModul('W4')">
+                <div class="modul-header">
+                    <div class="modul-icon">W4</div>
+                    <h3 class="modul-title">Hukum Mersenne</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang hukum Mersenne.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+            
+            <div class="modul-card" onclick="openModul('W5')">
+                <div class="modul-header">
+                    <div class="modul-icon">W5</div>
+                    <h3 class="modul-title">Cincin Newton</h3>
+                </div>
+                <p class="modul-description">
+                    Praktikum tentang cincin Newton.
+                </p>
+                <div class="modul-meta">
+                    <span class="modul-status status-available">Tersedia</span>
+                </div>
+            </div>
+            <div class="modul-category">
+                <div class="modul-grid">
+                    <a href="https://www.overleaf.com/read/hrxwrfjmbczd#2a6796" target="_blank" rel="noopener noreferrer" class="modul-card" aria-label="Buka Template Laporan di Overleaf">
+                        <div class="modul-icon">
+                            <svg class="modul-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="modul-header">
+                            <h3 class="modul-title">Template Laporan Overleaf</h3>
+                        </div>
+                        <p class="modul-description">
+                            Template laporan praktikum di Overleaf.
+                        </p>
+                        <div class="modul-meta">
+                            <span class="modul-status status-available">Tersedia</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <div id="modul-popup-overlay" class="modul-popup-overlay" aria-hidden="true" role="dialog" aria-labelledby="modul-popup-title" aria-modal="true">
+        <div class="modul-popup-box">
+            <img id="modul-popup-img" src="Epstein Files\Eins5.png" alt="Berpikir keras" class="modul-popup-img">
+            <p id="modul-popup-title">Modul belum tersedia. Silakan hubungi admin untuk informasi lebih lanjut.</p>
+            <button type="button" class="modul-popup-close" id="modul-popup-close">Tutup</button>
+        </div>
+    </div>
+
+    <script src="sidebar.js"></script>
+    <script>
+        const MODULE_LINKS = {
+            Data:'',
+            MP1: '',
+            MP2: '',
+            MP3: '',
+            MP4: '',
+            MP5: '',
+            W1: '',
+            W2: '',
+            W3: '',
+            W4: '',
+            W5: '',
+            Template: 'https://www.overleaf.com/read/hrxwrfjmbczd#2a6796'
+        };
+        const MODUL_UNAVAILABLE_IMG = {
+            MP1: 'Epstein Files/Eins10.png', MP2: 'Epstein Files/Eins10.png', MP3: 'Epstein Files/Eins10.png', MP4: 'Epstein Files/Eins10.png', MP5: 'Epstein Files/Eins10.png',
+            W1: 'Epstein Files/Eins5.png', W2: 'Epstein Files/Eins5.png', W3: 'Epstein Files/Eins5.png', W4: 'Epstein Files/Eins5.png', W5: 'Epstein Files/Eins5.png'
+        };
+        const MODUL_UNAVAILABLE_MSG = 'Modul belum tersedia. Silakan hubungi admin untuk informasi lebih lanjut.';
+
+        function showModulUnavailablePopup(modulId) {
+            const overlay = document.getElementById('modul-popup-overlay');
+            const imgEl = document.getElementById('modul-popup-img');
+            const msgEl = document.getElementById('modul-popup-title');
+            imgEl.src = MODUL_UNAVAILABLE_IMG[modulId] || 'Epstein Files/Eins10.png';
+            msgEl.textContent = MODUL_UNAVAILABLE_MSG;
+            overlay.classList.add('is-open');
+            overlay.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModulUnavailablePopup() {
+            const overlay = document.getElementById('modul-popup-overlay');
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        document.getElementById('modul-popup-close').addEventListener('click', closeModulUnavailablePopup);
+        document.getElementById('modul-popup-overlay').addEventListener('click', function (e) {
+            if (e.target === this) closeModulUnavailablePopup();
+        });
+
+        function openModul(modulId) {
+                // For the special "Data" module, open the dedicated pengolahan viewer
+                if (modulId === 'Data') {
+                window.location.href = 'view-pengolahan.html';
+                return;
+                }
+                // Navigate in same tab to internal viewer with module id
+                window.location.href = `view-modul.html?id=${encodeURIComponent(modulId)}`;
+        }
+    </script>
+</body>
+
+</html>
+

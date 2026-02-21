@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>View Modul - FISLAB II</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    figure[data-latex-placement="H"]{
+      display:block;
+      width:70%;
+      margin:1rem auto;
+      clear:both;
+      text-align:center;
+    }
+    figure[data-latex-placement="H"] img{
+      width:100%;
+      height:auto;
+      display:block;
+      margin:0 auto;
+    }
+    figure[data-latex-placement="H"] figcaption{
+      margin-top:.5rem;
+    }
+  </style>
+  <script src="firebase-config.js"></script>
+  <!-- MathJax CDN (will be typeset after content load) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+</head>
+<body>
+  <header class="top-left-header" aria-label="Brand header">
+        <button id="hamburger" class="hamburger" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <a href="home.html" class="header-brand-link" aria-label="Kembali ke Home">
+        <span class="header-logo">Φ</span>
+            <span class="header-text">FISLAB II</span>
+        </a>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+    <aside id="sidebar" class="sidebar" aria-label="Sidebar navigasi">
+      <div class="side-title">Menu</div>
+      <nav>
+        <a href="profile.html" id="nav-profile"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="label">Profile</span></a>
+        <a href="home.html" id="nav-home"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></span><span class="label">Dashboard</span></a>
+        <a href="modul.html" id="nav-modul"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/></svg></span><span class="label">Modul Praktikum</span></a>
+        <a href="kontak.html" id="nav-contacts"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span><span class="label">Kontak Asisten</span></a>
+        <a href="#" id="nav-logout"><span class="icon"><svg viewBox="0 0 24 24"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/><path d="M14 16l4-4-4-4"/><path d="M8 12h10"/></svg></span><span class="label">Keluar</span></a>
+      </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+    </button>
+
+    <main class="page-container">
+    <section class="page-header" aria-labelledby="page-title">
+      <h1 id="page-title" class="page-title"><span id="module-code"></span><span id="module-name" style="margin-left:8px;font-weight:600"></span></h1>
+      <p id="module-subtitle" class="page-subtitle">Viewer modul praktikum</p>
+    </section>
+
+    <div id="module-viewer" class="module-viewer-grid">
+      <aside id="toc" class="viewer-col toc-col" aria-label="Table of contents">
+        <h3>Daftar Isi</h3>
+        <nav id="toc-list"></nav>
+      </aside>
+
+      <article id="modul-content" class="viewer-col content-col" aria-live="polite">
+        <p>Memuat modul…</p>
+      </article>
+
+      <aside id="assistants" class="viewer-col assistants-col" aria-label="Asisten Pengampu">
+        <h3>Asisten Pengampu</h3>
+        <div id="assistants-list">Memuat…</div>
+      </aside>
+    </div>
+
+    <footer class="module-footer" style="display:flex;justify-content:space-between;margin-top:16px;align-items:center;gap:12px">
+      <button id="prev-mod" class="btn">&larr; Modul Sebelumnya</button>
+      <button id="back-to-modul" class="back-btn" title="Kembali ke daftar modul">← Kembali ke Modul</button>
+      <button id="next-mod" class="btn">Modul Selanjutnya &rarr;</button>
+    </footer>
+  </main>
+
+    <!-- Modal WhatsApp (reused from kontak.html) -->
+    <div id="wa-modal" class="wa-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="wa-modal" role="document">
+        <div class="wa-modal-header">
+          <h3 id="wa-modal-title">Kirim Pesan</h3>
+          <button type="button" id="wa-modal-close" aria-label="Tutup">×</button>
+        </div>
+        <div class="wa-modal-body">
+          <form id="wa-form">
+            <div class="form-group">
+              <label for="wa-nama">Nama Anda</label>
+              <input type="text" id="wa-nama" required>
+            </div>
+            <div class="form-group">
+              <label for="wa-nrp">NRP</label>
+              <input type="text" id="wa-nrp" required>
+            </div>
+            <div class="form-group">
+              <label>Asisten</label>
+              <input type="text" id="wa-asisten" readonly>
+            </div>
+            <div class="form-group">
+              <label for="wa-pesan">Pesan</label>
+              <textarea id="wa-pesan" placeholder="Tulis pesan..." required></textarea>
+            </div>
+            <div class="wa-actions">
+              <button type="submit" class="submit-btn wa-send-btn">
+                Kirim via WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="sidebar.js"></script>
+    <script src="view-modul.js"></script>
+</body>
+</html>

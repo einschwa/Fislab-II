@@ -1,0 +1,56 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / cache
+dist/
+build/
+.cache/
+/.parcel-cache/
+
+# Environment files
+.env
+.env.*
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS generated
+ehthumbs.db
+Icon
+
+# Sensitive config files (do NOT commit secrets)
+firebase-config.js
+supabase-config.js
+
+# Hosting/platform dirs
+.vercel/
+.netlify/
+.firebase/
+
+# If you already committed sensitive files, remove from git index with:
+#   git rm --cached firebase-config.js supabase-config.js
+# Then add real secrets to environment variables and keep templates (e.g. firebase-config.js.example)
+
+# Optional: ignore local editor/session files
+session.lock

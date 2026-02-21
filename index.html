@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login FISLAB II</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <img id="loading-avatar" src="Epstein Files/Eins1.png" alt="Loading avatar" width="200" height="200">
+            <div class="loading-bar-container" aria-hidden="true">
+                <div class="loading-bar-fill" id="progress-bar" style="width:0%"></div>
+            </div>
+            <div id="loading-text" class="progress-text">Memuat... <span id="progress-text">0%</span></div>
+        </div>
+    </div>
+
+    <header class="top-left-header" aria-label="Brand header">
+        <span class="header-logo">Φ</span>
+        <span class="header-text">FISLAB II</span>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+
+    <div class="login-container">
+        <div class="logo-wrapper">
+            <div class="logo-symbol">Φ</div>
+            <h1 class="logo-text">FISLAB II</h1>
+            <button id="initial-login-btn" class="login-btn">Login</button>
+        </div>
+
+        <div id="login-form-wrapper">
+            <form id="login-form" method="POST">
+                <div class="form-fields"> 
+                    <div class="input-group">
+                        <label for="nrp">NRP</label>
+                        <input type="text" id="nrp" name="nrp" required>
+                    </div>
+                    <div class="input-group password-group">
+                        <label for="password">Kata Sandi</label>
+                        <div class="input-with-toggle">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" id="toggle-password" class="toggle-password" aria-label="Tampilkan kata sandi" aria-pressed="false">
+                                <svg class="eye" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                <svg class="eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.77 21.77 0 0 1 5.06-5.94"/>
+                                    <path d="M1 1l22 22"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="sidebar.js"></script>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

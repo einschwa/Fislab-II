@@ -1,0 +1,437 @@
+<h1 id="perhitungan-dan-evaluasi-data">Perhitungan dan Evaluasi
+Data</h1>
+<h2 id="akurasi-presisi-dan-ralat-eksperimental">Akurasi, Presisi, dan
+Ralat Eksperimental</h2>
+<p>Dalam semua eksperimen, komunikasi data adalah aspek yang sangat
+penting. Data harus dianalisis dan disajikan seakurat mungkin. Namun,
+tidak ada alat ukur atau prosedur pengukuran yang sempurna. Oleh karena
+itu, semua laporan data harus mencantumkan ralat eksperimental pada
+semua nilai yang diukur.</p>
+<p>Ralat eksperimental memengaruhi akurasi dan presisi data. Akurasi
+menggambarkan seberapa dekat suatu pengukuran dengan nilai yang
+diketahui atau diterima. Misalnya, jika massa sampel diketahui sebesar
+5.85 gram. Pengukuran 5.81 lebih akurat dibandingkan dengan pengukuran
+6.05 gram.</p>
+<p>Presisi menggambarkan seberapa dekat beberapa pengukuran satu sama
+lain. Semakin dekat nilai-nilai yang diukur satu sama lain, semakin
+tinggi presisinya.</p>
+<p>Ingatlah bahwa pengukuran dapat presisi meskipun tidak akurat!
+Misalnya lagi, jika massa sampel yang diketahui sebesar 5.85 gram. Jika
+beberapa pengukuran diambil, dan semua pengukuran mendekati 8.5 gram.
+Pengukuran tersebut presisi karena dekat satu sama lain, tetapi tidak
+ada pengukuran yang akurat karena semuanya jauh dari massa sampel yang
+diketahui.</p>
+<h2 id="jenis-ralat-eksperimental">Jenis Ralat Eksperimental</h2>
+<p>Ada dua sumber ralat eksperimental:</p>
+<h3 class="unnumbered" id="ralat-sistematis">Ralat Sistematis</h3>
+<p>ralat sistematis adalah ralat yang terjadi setiap kali melakukan
+pengukuran tertentu. Contohnya termasuk ralat karena kalibrasi instrumen
+dan ralat karena prosedur atau asumsi yang salah. Jenis ralat ini
+membuat pengukuran menjadi lebih tinggi atau lebih rendah daripada jika
+tidak ada ralat sistematis. Contoh ralat sistematis dapat terjadi saat
+menggunakan neraca yang tidak dikalibrasi dengan benar. Setiap
+pengukuran yang dilakukan menggunakan alat ini akan salah. Pengukuran
+tidak bisa akurat jika ada ralat sistematis.</p>
+<h3 class="unnumbered" id="ralat-acak">Ralat Acak</h3>
+<p>ralat acak adalah kesalahan yang tidak dapat diprediksi. Termasuk
+ralat penilaian dalam membaca meteran atau skala dan ralat karena
+kondisi eksperimental yang berubah-ubah. Misalnya, mengukur suhu di
+ruang kelas selama beberapa hari. Variasi besar dalam suhu ruang kelas
+dapat menyebabkan ralat acak saat mengukur perubahan suhu eksperimental.
+Jika ralat acak dalam suatu eksperimen kecil, maka eksperimen dikatakan
+presisi.</p>
+<h2 id="analisis-data">Analisis Data</h2>
+<p>Ketidakpastian dalam data dapat digambarkan dengan menghitung mean
+dan standar deviasi (atau median dan interkuartil). Mean dari sekumpulan
+data adalah jumlah semua nilai pengukuran dibagi dengan jumlah
+pengukuran. Setelah mengukur kuantitas <span
+class="math inline">\(x\)</span> diulang <span
+class="math inline">\(n\)</span> kali, mean, <span
+class="math inline">\(\bar{x}\)</span>, ditentukan menggunakan rumus:
+<span class="math display">\[\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i =
+\frac{x_1 + x_2 + x_3 + \cdots + x_n}{n}\]</span> di mana <span
+class="math inline">\(x_1\)</span>, <span
+class="math inline">\(x_2\)</span>, dll., adalah nilai pengukuran, dan
+<span class="math inline">\(n\)</span> adalah jumlah pengukuran. Untuk
+Median dari sekumpulan data adalah titik tengah dari data setelah
+semuanya diurutkan. Untuk jumlah pengukuran ganjil, median dapat dengan
+mudah ditentukan karena data dapat dibagi menjadi dua bagian yang sama
+dengan satu pembagi di tengah data. Namun, untuk jumlah pengukuran genap
+(untuk menggambarkan lebih baik, bayangkan jika ada <span
+class="math inline">\(n\)</span> jumlah pengukuran, <span
+class="math inline">\(n\)</span> adalah genap), median dihitung
+menggunakan rata-rata dari titik data ke-<span
+class="math inline">\(\frac{n}{2}\)</span> dan ke-<span
+class="math inline">\(\frac{n}{2} + 1\)</span>.</p>
+<p>Misalkan, periode pendulum diukur 10 kali, dan diperoleh nilai 3.14,
+3.11, 3.21, 3.14, 3.19, 3.09, 3.15, 3.13, 3.12, dan 3.16 (semua dalam
+detik). Dari data tersebut, dapat dilihat bahwa data cukup presisi
+sehingga nilai mean dapat digunakan untuk mewakili data. Dan tentu saja,
+ketika beberapa pengulangan eksperimen dilakukan, harus dinyatakan
+standar deviasi (jika menggunakan mean dari data), atau interkuartil
+(jika menggunakan median). Standar deviasi diberikan oleh persamaan
+<span class="math display">\[\sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i -
+\bar{x})^2}{n - 1}}\]</span> di mana <span
+class="math inline">\(x_i\)</span> adalah pengukuran ke-<span
+class="math inline">\(i\)</span>, <span
+class="math inline">\(\bar{x}\)</span> adalah mean, dan <span
+class="math inline">\(n\)</span> adalah jumlah pengukuran. Untuk
+interkuartil, data asli yang diurutkan dibagi menjadi empat bagian,
+dengan tiga pembagi. Pembagi pertama adalah kuartil bawah, pembagi kedua
+adalah median, dan pembagi ketiga adalah kuartil atas. Rentang
+interkuartil didefinisikan sebagai perbedaan antara kuartil atas dan
+kuartil bawah. MATLAB dapat digunakan untuk ini daripada melakukannya
+secara manual. Sintaks untuk standar deviasi dan rentang interkuartil
+diberikan sebagai berikut</p>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb1" data-language="Matlab"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">periods</span> <span class="op">=</span> [<span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.11</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.21</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.19</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.09</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.15</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.13</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.12</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>           <span class="fl">3.16</span>]<span class="op">;</span><span class="co">%Data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">% Menghitung mean</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">mean_period</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">periods</span>)<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">mean_period</span>)<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">% Menghitung standar deviasi</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">std_period</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">periods</span>)<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">std_period</span>)<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">% Menghitung median</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">mid_period</span> <span class="op">=</span> <span class="va">median</span>(<span class="va">periods</span>)<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">mid_period</span>)<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">% Menghitung rentang interkuartil (IQR)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">iqr_period</span> <span class="op">=</span> <span class="va">iqr</span>(<span class="va">periods</span>)<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">iqr_period</span>)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb2" data-language="Python"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> np.array([<span class="fl">3.14</span>, <span class="fl">3.11</span>, <span class="fl">3.21</span>, <span class="fl">3.14</span>, <span class="fl">3.19</span>, <span class="fl">3.09</span>, <span class="fl">3.15</span>, <span class="fl">3.13</span>, <span class="fl">3.12</span>, <span class="fl">3.16</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Menghitung mean</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mean_period <span class="op">=</span> np.mean(periods)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Mean: </span><span class="sc">{</span>mean_period<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Menghitung standar deviasi</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>std_period <span class="op">=</span> np.std(periods, ddof<span class="op">=</span><span class="dv">1</span>)  <span class="co"># ddof=1 untuk sampel standar deviasi</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Standard Deviation: </span><span class="sc">{</span>std_period<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Menghitung median</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>mid_period <span class="op">=</span> np.median(periods)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Median: </span><span class="sc">{</span>mid_period<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Menghitung rentang interkuartil (IQR)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>iqr_period <span class="op">=</span> stats.iqr(periods)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Interquartile Range (IQR): </span><span class="sc">{</span>iqr_period<span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+</div>
+<p>Semua data harus memiliki kesalahan yang diwakili oleh standar
+deviasi atau rentang interkuartil, tergantung pada apa yang digunakan.
+Untuk data di atas, dengan menggunakan mean, nilai akhir adalah <span
+class="math inline">\(3.1440 \pm 0.0360\)</span> s, dan dengan
+menggunakan median, nilai akhir adalah <span
+class="math inline">\(3.1400 \pm 0.0400\)</span> s.</p>
+<h2 id="propagasi-ralat">Propagasi ralat</h2>
+<p>Misalkan dua besaran terukur <span class="math inline">\(x\)</span>
+dan <span class="math inline">\(y\)</span> memiliki ketidakpastian
+masing-masing <span class="math inline">\(\Delta x\)</span> dan <span
+class="math inline">\(\Delta y\)</span>. Jika kita ingin menghitung
+besaran baru <span class="math inline">\(z\)</span> berdasarkan <span
+class="math inline">\(x\)</span> dan <span
+class="math inline">\(y\)</span>, bagaimana ketidakpastian <span
+class="math inline">\(\Delta z\)</span> ditentukan?</p>
+<h2 id="penjumlahan-atau-pengurangan">Penjumlahan atau Pengurangan</h2>
+<p>Ketidakpastian <span class="math inline">\(z\)</span> pada bentuk
+persamaan <span class="math inline">\(z=x+y\)</span> atau <span
+class="math inline">\(z=x-y\)</span> dapat dihitung melalui <span
+class="math display">\[\begin{equation}
+    \Delta z = \sqrt{(\Delta x)^2 + (\Delta y)^2}
+\end{equation}\]</span></p>
+<h3 class="unnumbered" id="contoh-1">Contoh 1</h3>
+<p>Hasil pengukuran dua buah tali, tali A dan tali berupa <span
+class="math inline">\(3.51 \pm 0.5 \, \text{cm}\)</span>, dan <span
+class="math inline">\(4.78 \pm 0.5 \, \text{cm}\)</span>. Ketika
+menggabungkan kedua tali ini, yaitu tali C, ketidakpastian dalam panjang
+tali yang dihasilkan akan menjadi: <span class="math display">\[\Delta C
+= \sqrt{(\Delta A)^2 + (\Delta B)^2}\]</span> <span
+class="math display">\[\Delta C = \sqrt{(0.5)^2 + (0.5)^2} \approx
+0.70\]</span> Jadi, tali C memiliki panjang <span
+class="math inline">\(8.29 \pm 0.70 \, \text{cm}\)</span>.</p>
+<h2 id="perkalian-atau-pembagian-z-xy-atau-z-fracxy">Perkalian atau
+Pembagian, <span class="math inline">\(z = xy\)</span> atau <span
+class="math inline">\(z = \frac{x}{y}\)</span></h2>
+<p>Untuk perkalian dan pembagian, dengan mengambil nilai terbesar untuk
+<span class="math inline">\(x\)</span> dan <span
+class="math inline">\(y\)</span>: <span class="math display">\[z +
+\Delta z = (x + \Delta x)(y + \Delta y)\]</span> <span
+class="math display">\[z + \Delta z = xy + x\Delta y + y\Delta x +
+\Delta x \Delta y\]</span> <span class="math display">\[z + \Delta z
+\approx xy + x\Delta y + y\Delta x\]</span> <span
+class="math display">\[\Delta z \approx x\Delta y + y\Delta x\]</span>
+Perhatikan bahwa istilah <span class="math inline">\(\Delta x \Delta
+y\)</span> diabaikan karena sangat kecil dibandingkan dengan istilah
+lainnya. Sederhanakan ekspresi ini, kita mendapatkan: <span
+class="math display">\[\Delta z = x\Delta y + y\Delta x\]</span> <span
+class="math display">\[\frac{\Delta z}{z} = \frac{x \Delta y}{xy} +
+\frac{y \Delta x}{xy}\]</span> <span class="math display">\[\frac{\Delta
+z}{z} = \frac{\Delta y}{y} + \frac{\Delta x}{x}\]</span> Pada bagian
+sebelumnya, kita tahu bahwa menggabungkan ketidakpastian dari dua
+besaran dengan menambahkannya dijelaskan melalui: <span
+class="math display">\[\frac{\Delta z}{z} = \sqrt{\left( \frac{\Delta
+x}{x} \right)^2 + \left( \frac{\Delta y}{y} \right)^2}\]</span> Jadi,
+bentuk akhirnya menjadi: <span class="math display">\[\Delta z = z
+\sqrt{\left( \frac{\Delta x}{x} \right)^2 + \left( \frac{\Delta y}{y}
+\right)^2}\]</span></p>
+<h3 class="unnumbered" id="contoh-2">Contoh 2</h3>
+<p>Hasil pengukuran percepatan gravitasi Bumi menggunakan gravitometer
+dan Anda mendapatkan nilai <span class="math inline">\(9.87 \pm 0.12 \,
+\text{m/s}^2\)</span>. Untuk massa yang telah diukur sebelumnya sebesar
+<span class="math inline">\(5.21 \pm 0.87 \, \text{kg}\)</span>,
+ketidakpastian gaya berat tersebut adalah: <span
+class="math display">\[\frac{\Delta W}{W} = \sqrt{\left( \frac{\Delta
+m}{m} \right)^2 + \left( \frac{\Delta a}{a} \right)^2}\]</span> <span
+class="math display">\[\Delta W = ma \sqrt{\left( \frac{\Delta m}{m}
+\right)^2 + \left( \frac{\Delta a}{a} \right)^2}\]</span> <span
+class="math display">\[\Delta W = (5.21)(9.87) \sqrt{\left(
+\frac{0.87}{5.21} \right)^2 + \left( \frac{0.12}{9.87} \right)^2}
+\approx 8.61\]</span> Jadi, gaya berat tersebut adalah <span
+class="math inline">\(51.42 \pm 8.61 \, \text{N}\)</span>.</p>
+<h2 id="fungsi-z-fx-y">Fungsi, <span class="math inline">\(z = f(x,
+y)\)</span></h2>
+<p>Sekarang, bagaimana jika <span class="math inline">\(z =
+\sin(x)\)</span>, <span class="math inline">\(z = \cos(y)\)</span>, atau
+bahkan <span class="math inline">\(z = e^x\)</span>? Persamaan umum
+untuk kasus-kasus ini adalah, untuk <span class="math inline">\(z = f(x,
+y, \ldots)\)</span>: <span class="math display">\[\Delta z =
+\sqrt{\left( \frac{\partial f}{\partial x} \Delta x \right)^2 + \left(
+\frac{\partial f}{\partial y} \Delta y \right)^2 + \ldots}\]</span></p>
+<h3 class="unnumbered" id="contoh-3">Contoh 3</h3>
+<p>Hasil pengukuran salah satu sudut dalam segitiga didapat dengan
+menghitung sinusnya. Salah satu hasil pengukuran sudut terbesarnya
+adalah <span class="math inline">\(3.74 \pm 0.24 \, \text{rad}\)</span>.
+Sinus dari sudut tersebut adalah: <span class="math display">\[z =
+\sin(\theta)\]</span> <span class="math display">\[\Delta z =
+\sqrt{\left( \frac{\partial z}{\partial \theta} \Delta \theta
+\right)^2}\]</span> <span class="math display">\[\Delta z = \sqrt{\left(
+\cos(\theta) \Delta \theta \right)^2}\]</span> <span
+class="math display">\[\Delta z = \sqrt{(\cos(3.74))^2 (0.24)^2} \approx
+0.20\]</span> Jadi, sinus dari sudut tersebut adalah <span
+class="math inline">\(-0.56 \pm 0.20\)</span>.</p>
+<h2 id="standar-grafik">Standar Grafik</h2>
+<h2 id="variabel-independen-dan-dependen">Variabel Independen dan
+Dependen</h2>
+<p>Saat membuat grafik, variabel independen diplot pada sumbu <span
+class="math inline">\(x\)</span>, sedangkan variabel dependen diplot
+pada sumbu <span class="math inline">\(y\)</span>. Contohnya, dalam
+eksperimen kinematika, waktu sering kali menjadi variabel independen,
+sedangkan posisi adalah variabel dependen.</p>
+<h2 id="visualisasi-standard-grafik">Visualisasi Standard Grafik</h2>
+<p>Beberapa panduan dalam membuat grafik yang baik:</p>
+<ul>
+<li><p>Setiap sumbu harus diberi label dengan nama variabel dan
+satuannya.</p></li>
+<li><p>Harus ada tanda skala yang cukup jelas pada setiap
+sumbu.</p></li>
+<li><p>Ukuran font harus disesuaikan agar mudah dibaca.</p></li>
+<li><p>Grafik harus menyertakan batang kesalahan (error bars) untuk
+menunjukkan ketidakpastian eksperimen.</p></li>
+<li><p>berikut adalah contoh bentuk grafik yang benar dalam kode matlab
+maupun kode python</p>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb3" data-language="Matlab"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">voltage</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">;</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">;</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span>]<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">current_avg</span> <span class="op">=</span> [</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0037</span> <span class="fl">0.0005</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0067</span> <span class="fl">0.0003</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0098</span> <span class="fl">0.0002</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0126</span> <span class="fl">0.0003</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0159</span> <span class="fl">0.0004</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">scatter</span>(<span class="va">voltage</span><span class="op">,</span> <span class="va">current_avg</span>(<span class="op">:,</span> <span class="fl">1</span>)<span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="ss">&#39;filled&#39;</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">errorbar</span>(<span class="va">voltage</span><span class="op">,</span> <span class="va">current_avg</span>(<span class="op">:,</span> <span class="fl">1</span>)<span class="op">,</span> <span class="va">current_avg</span>(<span class="op">:,</span> <span class="fl">2</span>)<span class="op">,</span> <span class="ss">&#39;LineStyle&#39;</span><span class="op">,</span> <span class="ss">&#39;none&#39;</span><span class="op">,</span> <span class="ss">&#39;Color&#39;</span><span class="op">,</span> <span class="ss">&#39;red&#39;</span><span class="op">,</span> <span class="ss">&#39;LineWidth&#39;</span><span class="op">,</span> <span class="fl">1</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="ss">&#39;Voltage(V)&#39;</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="ss">&#39;Current(A)&#39;</span>)</span></code></pre></div>
+</div>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb4" data-language="Python"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>voltage <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>current_avg <span class="op">=</span> np.array([</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0037</span>, <span class="fl">0.0005</span>],</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0067</span>, <span class="fl">0.0003</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0098</span>, <span class="fl">0.0002</span>],</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0126</span>, <span class="fl">0.0003</span>],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0159</span>, <span class="fl">0.0004</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Membuat plot</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(voltage, current_avg[:, <span class="dv">0</span>], s<span class="op">=</span><span class="dv">36</span>, c<span class="op">=</span><span class="st">&#39;blue&#39;</span>, label<span class="op">=</span><span class="st">&#39;Current(A)&#39;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.errorbar(voltage, current_avg[:, <span class="dv">0</span>], yerr<span class="op">=</span>current_avg[:, <span class="dv">1</span>], fmt<span class="op">=</span><span class="st">&#39;o&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;none&#39;</span>, color<span class="op">=</span><span class="st">&#39;red&#39;</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Voltage(V)&#39;</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Current(A)&#39;</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div></li>
+</ul>
+<figure id="fig:enter-label" data-latex-placement="htbp">
+<img src="modul/Gambar/plot_latex_fislab2.png" style="width:70.0%" />
+<figcaption>Bentuk Standard Grafik</figcaption>
+</figure>
+<h2 id="regresi-linear">Regresi Linear</h2>
+<p>Regresi linear sering digunakan untuk mendapatkan kemiringan (slope)
+dan titik potong (intercept). Persamaan regresi linier adalah: <span
+class="math display">\[\begin{equation}
+    y = mx + c
+\end{equation}\]</span> Di mana <span class="math inline">\(m\)</span>
+adalah kemiringan dan <span class="math inline">\(c\)</span> adalah
+titik potong dengan sumbu <span class="math inline">\(y\)</span>. Untuk
+menentukan <span class="math inline">\(m\)</span> dan <span
+class="math inline">\(c\)</span> menggunakan metode regresi berbobot,
+digunakan persamaan berikut: <span class="math display">\[\begin{align}
+    % Koefisien kemiringan (m)
+    m &amp;= \frac{N \sum{xy} - \sum{x} \sum{y}}{N \sum{x^2} -
+(\sum{x})^2}\\
+    % Intersep (c)
+    c &amp;= \frac{\sum{y} - m \sum{x}}{N}
+\end{align}\]</span> Dengan Bobot error untuk <span
+class="math inline">\(m\)</span> dan <span
+class="math inline">\(c\)</span> itu sendiri diberikan dalam bentuk
+<span class="math display">\[\begin{align}
+    % Error pada koefisien kemiringan (error_m)
+    \Delta m &amp;= \sqrt{\frac{1}{N-2} \cdot \left( \frac{\sum{y^2} - c
+\sum{y} - m \sum{xy}}{\sum{x^2} - (\sum{x})^2} \right)}\\
+    % Error pada intersep (error_c)
+    \Delta c &amp;= \Delta m \cdot \sqrt{\frac{\sum{x^2}}{N}}
+\end{align}\]</span> Untuk implementasi kode sebagai berikut</p>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb5" data-language="Matlab"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">voltage</span> <span class="op">=</span>[<span class="fl">1</span><span class="op">;</span><span class="fl">2</span><span class="op">;</span><span class="fl">3</span><span class="op">;</span><span class="fl">4</span><span class="op">;</span><span class="fl">5</span>]<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">current_avg</span> <span class="op">=</span>[<span class="fl">0.0037</span> <span class="fl">0.0005</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0067</span> <span class="fl">0.0003</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0098</span> <span class="fl">0.0002</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0126</span> <span class="fl">0.0003</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0159</span> <span class="fl">0.0004</span>]<span class="op">;</span><span class="co">%Data</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="va">p</span> <span class="op">=</span> <span class="va">polyfit</span> ( <span class="va">voltage</span> <span class="op">,</span> <span class="va">current_avg</span> (<span class="op">:</span> <span class="op">,</span><span class="fl">1</span>) <span class="op">,</span><span class="fl">1</span>) <span class="op">;</span><span class="co">%Regresi Linier</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span> ([ <span class="ss">&#39;Slope:&#39;</span> <span class="va">num2str</span> ( <span class="va">p</span> (<span class="fl">1</span>) ) ])</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span> ([ <span class="ss">&#39;y- intercept:&#39;</span> <span class="va">num2str</span> ( <span class="va">p</span> (<span class="fl">2</span>) ) ])</span></code></pre></div>
+</div>
+<div class="tcolorbox">
+<div class="sourceCode" id="cb6" data-language="Python"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>voltage <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>current_avg <span class="op">=</span> np.array([</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0037</span>, <span class="fl">0.0005</span>],</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0067</span>, <span class="fl">0.0003</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0098</span>, <span class="fl">0.0002</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0126</span>, <span class="fl">0.0003</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0159</span>, <span class="fl">0.0004</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>])<span class="co"># Data</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Melakukan regresi linier</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.polyfit(voltage, current_avg[:, <span class="dv">0</span>], <span class="dv">1</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Slope:&#39;</span>, p[<span class="dv">0</span>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;y-intercept:&#39;</span>, p[<span class="dv">1</span>])</span></code></pre></div>
+</div>
+<table>
+<caption>Hasil pengukuran sampel. Pengulangan diambil rata-rata dan
+standar deviasi digunakan.</caption>
+<thead>
+<tr>
+<th style="text-align: center;">Tegangan (V)</th>
+<th style="text-align: center;">Arus (A)</th>
+<th style="text-align: center;">Rata-rata Arus (A)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.0041</td>
+<td style="text-align: center;">0.0037 ± 0.0005</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0039</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0034</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0042</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0031</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0.0066</td>
+<td style="text-align: center;">0.0067 ± 0.0003</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0065</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0070</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0071</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0063</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.0097</td>
+<td style="text-align: center;">0.0098 ± 0.0002</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0096</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0100</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0099</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.0100</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>

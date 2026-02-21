@@ -1,0 +1,128 @@
+\praktikum[W4]{Hukum Mersenne}
+\subsection{Pendahuluan}
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Gambar/freepik__illustration-of-a-simple-stationary-wave-on-a-rope__76393.png} 
+\end{wrapfigure}
+Jika Anda pernah mendengar kata "Mersenne," kemungkinan besar yang terlintas di benak Anda adalah seorang pria Perancis dengan kumis tebal yang tak pernah lekang oleh waktu, duduk dengan tenang sambil memikirkan angka-angka misterius. Nah, meskipun ia mungkin tidak duduk santai sambil menikmati croissant, namun Marin Mersenne, seorang pendeta dan matematikawan abad ke-17, memang berjasa besar dalam dunia matematika dengan hukum yang dinamakan sesuai namanya.
+
+Mersenne dikenal karena "menghubungkan" frekuensi bunyi dan panjang tali dalam instrumen musik, tetapi hukum Mersenne yang kita bahas di sini sedikit lebih... serius. Hukum ini, yang menyangkut frekuensi alami getaran pada senar atau pipa, memberi kita peta yang sangat berguna untuk getararan senar bahwa semakin panjang senar atau semakin tebal senar, semakin rendah frekuensi getarannya, yang berarti nada yang dihasilkan lebih rendah. Sebaliknya, semakin kencang senar ditarik, semakin tinggi frekuensinya, sehingga menghasilkan nada yang lebih tinggi.
+
+
+\subsection{Tujuan}
+Tujuan dari praktikum ini adalah :
+\begin{enumerate}
+    \item Memahami Karakteristik Getaran Senar dan Kondisi Pembentukan Gelombang Berdiri
+    \item Menentukan dan mengukur Kecepatan Propagasi Gelombang Berdiri
+    \item Menentukan dan mengukur Frekuensi senar pada kondisi Resonansi
+\end{enumerate}
+\subsection{Alat dan Bahan}
+Peralatan yang digunakan praktikum ini adalah :
+
+\begin{longtable}{ccc}
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endfirsthead % Bagian header tabel untuk halaman pertama
+
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endhead % Bagian header tabel untuk halaman berikutnya
+
+\hline
+\bottomrule
+\endfoot % Bagian footer tabel untuk halaman berikutnya
+        Sumber Sinyal & 1 & Penghasil sinyal eksitasi untuk senar \\
+        Platform Kerja & 1 & Tempat pemasangan alat eksperimen \\
+        Sensor Probe & 2 & Sensor pemacu dan penerima sinyal getaran \\
+        Wedge Siku-Siku & 2 & Penopang untuk menentukan panjang senar \\
+        Kabel Uji Q9 & 1 & Kabel penghubung sensor ke osiloskop \\
+        Senar & 6 & 2 pcs masing-masing berdiameter 0.35mm, 0.4mm, 0.5mm \\
+        Bobot & 1 Set & Bobot M1 presisi tinggi dengan wadah transparan \\
+        Kabel Daya & 1 & Kabel listrik untuk sumber sinyal \\
+        Osiloskop & - & Harus disiapkan sendiri \\
+\end{longtable}
+
+\subsection{Pre-Lab}
+\begin{enumerate}
+    \item Dari Persamaan Hukum Melde, Bagaimana panjang senar mempengaruhi frekuensi getaran pada senar yang digetarkan?
+    \item Jika massa senar lebih besar, bagaimana hal itu mempengaruhi frekuensi getaran senar yang digetarkan?
+    \item Bagaimana cara mengatur tegangan senar agar menghasilkan frekuensi tertentu dalam eksperimen getaran senar?
+    \item Apa yang dimaksud dengan mode getaran pada senar, dan bagaimana cara menjelaskan terbentuknya mode pertama, kedua, dan seterusnya?
+    \item Jika diketahui bahwa kecepatan gelombang pada senar yang memiliki gaya tegangan sebesar $T$ dan massa jenis $\mu$ adalah 
+    \begin{equation}
+        v = \sqrt{\frac{T}{\mu}}
+    \end{equation}
+    buktikan bahwa frekuensi yang terjadi merupakan kelipatan $n$ dari frekuensi nada dasar dari 
+    \begin{equation}
+        f_n = \frac{n}{2L}\sqrt{\frac{T}{\mu}}
+    \end{equation}
+    \item Dari soal diatas, Jika panjang senar bertambah, bagaimana frekuensi dasar dari getaran senar tersebut berubah?
+    \item Bagaimana hubungan antara kecepatan gelombang pada senar dengan frekuensi getaran senar?
+    \item Apa yang terjadi pada frekuensi getaran jika tegangan senar dilipatgandakan?
+\end{enumerate}
+\subsection{In-Lab}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Gambar/Alat_Gelombang_mekanik.png}
+    \caption{Skema Alat Gelombang Mekanik}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection*{Instalasi Alat}
+\begin{enumerate}
+    \item Pilih senar dan pastikan kedua ujungnya terpasang dengan kuat.
+    \item Letakkan dua wedge (penopang) pada posisi tertentu untuk menentukan panjang efektif senar.
+    \item Pasang sensor pemacu (\textit{drive probe}) dan sensor penerima (\textit{receive probe}) sesuai diagram.
+    \item Gantungkan beban pada batang tegangan dan sesuaikan dengan sekrup untuk mengatur tegangan senar.
+    \item Pastikan hubungan kabel dari osiloskop dan sumber sinyal sudah benar.
+\end{enumerate}
+
+\subsubsection*{Prosedur Praktikum}
+\begin{enumerate}
+    \item Ukur Frekuensi Resonansi dengan Mengubah Frekuensi Pemacu dengan Tegangan, kepadatan linear, dan panjang senar tetap.
+    \item ubah frekuensi dengan memacu perlahan dan amati gelombang berdiri menggunakan osiloskop.
+    \item Catat frekuensi resonansi dan jumlah simpul serta perut gelombang.
+    \item \textbf{Mengamati Pengaruh Tegangan Senar terhadap Frekuensi Resonansi}
+    \begin{enumerate}
+        \item Panjang senar dan kepadatan linear tetap.
+        \item Ubah tegangan dengan mengganti beban.
+        \item Catat frekuensi resonansi pada setiap nilai tegangan.
+    \end{enumerate}
+    \item \textbf{Mengamati Pengaruh Kepadatan Linear terhadap Frekuensi Resonansi}
+    \begin{enumerate}
+        \item Panjang dan tegangan senar tetap.
+        \item Gunakan senar dengan kepadatan linear berbeda.
+        \item Bandingkan frekuensi resonansi dan hitung kecepatan propagasi gelombang.
+    \end{enumerate}
+\end{enumerate}
+
+
+\subsection{Analisis Data}
+\begin{enumerate}
+    \item Hitung kecepatan gelombang stasioner pada tali menggunakan:
+    \[
+    v = \sqrt{\frac{T}{\mu}}
+    \]
+    dengan \( T \) sebagai tegangan pada senar. 
+    \item Hitung frekuensi senar menggunakan 
+    \[
+    f_n = \frac{n}{2L}\sqrt{\frac{T}{\mu}}
+    \]
+    dengan \( L \) adalah panjang senar dan \( n \) adalah bilangan bulat
+    \item Kemudian gunakan persamaan Hukum Mersenne pada nada ke $n$ untuk menghitung frekuensi getaran dan buat grafik regresi linier dari Tegangan tali terhadap frekuensi nada serta Kepadatan linear tali terhadap frekuensi ke $n$ ini.
+    \item Bandingkan frekuensi nada kedua, ketiga dan seterusnya pada hasil praktikum terhadap frekuensi nya secara teoritis dan Cari ralat nisbinya.
+    \item Bandingkan hasil eksperimen dengan teori dan evaluasi faktor penyebab perbedaan jika ada. Interpretasikan hasil dengan melihat pola hubungan antara variabel.
+\end{enumerate}
+\subsection{Post-Lab}
+\begin{enumerate}
+    \item Bagaimana perubahan massa jenis senar memengaruhi resonansi?
+    \item Apakah pengaruh massa objek terhadap frekuensi getaran dapat terlihat secara jelas dalam data eksperimen?
+    \item Apakah hasil eksperimen sesuai dengan prediksi teori Hukum Mersenne? Jelaskan alasanmu.
+    \item Apakah hasil eksperimen Anda menunjukkan adanya pola tertentu dalam hubungan antara tegangan dan frekuensi?
+    \item Bagaimana Anda menginterpretasikan perubahan frekuensi ketika panjang senar diubah, berdasarkan data yang diperoleh?
+    \item Faktor apa saja yang memengaruhi frekuensi resonansi dan kecepatan gelombang?
+\end{enumerate}
+

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin - FISLAB II</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-left-header" aria-label="Brand header">
+        <button id="hamburger" class="hamburger" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <a href="home.html" class="header-brand-link" aria-label="Kembali ke Home">
+            <span class="header-logo">Φ</span>
+            <span class="header-text">FISLAB II</span>
+        </a>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+
+    <!-- Dark / Light mode -->
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <!-- View mode toggle: Card / Table -->
+    <button id="view-toggle" class="view-toggle" type="button" aria-label="Ganti tampilan kartu/tabel">
+        Card View
+    </button>
+
+    <aside id="sidebar" class="sidebar" aria-label="Sidebar navigasi">
+        <div class="side-title">Menu</div>
+        <nav>
+            <a href="profile.html" id="nav-profile">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span class="label">Profile</span>
+            </a>
+            <a href="home.html" id="nav-home">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="admin.html" id="nav-admin" class="active">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard Admin</span>
+            </a>
+            <a href="modul.html" id="nav-modul">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="8" height="16" rx="1"/>
+                        <rect x="13" y="4" width="8" height="16" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Modul Praktikum</span>
+            </a>
+            <a href="kontak.html" id="nav-contacts">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                        <path d="M3 7l9 6 9-6"/>
+                    </svg>
+                </span>
+                <span class="label">Kontak Asisten Laboratorium</span>
+            </a>
+            <a href="nilai.html" id="nav-nilai" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Nilai Praktikum</span>
+            </a>
+            <a href="penilaian.html" id="nav-penilaian" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Penilaian Praktikum</span>
+            </a>
+            <a href="penjadwal.html" id="nav-penjadwalan" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Penjadwalan</span>
+            </a>
+            <a href="jadwal.html" id="nav-schedule">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="17" rx="1"/>
+                        <path d="M8 2v4M16 2v4M3 10h18"/>
+                    </svg>
+                </span>
+                <span class="label">Jadwal Praktikum</span>
+            </a>
+            <a href="#" id="nav-logout">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+                        <path d="M14 16l4-4-4-4"/>
+                        <path d="M8 12h10"/>
+                    </svg>
+                </span>
+                <span class="label">Keluar</span>
+            </a>
+        </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+    <main class="page-container admin-page-container">
+        <section class="page-header" aria-labelledby="page-title">
+            <h1 id="page-title" class="page-title">Dashboard Admin</h1>
+            <p class="page-subtitle" id="admin-subtitle">Memuat rekapitulasi data praktikan...</p>
+        </section>
+
+        <!-- Summary cards -->
+        <section class="admin-summary-grid" aria-label="Ringkasan praktikum">
+            <div class="admin-summary-card">
+                <div class="admin-summary-label">Total Praktikan</div>
+                <div class="admin-summary-value" id="summary-total-praktikan">-</div>
+            </div>
+            <div class="admin-summary-card">
+                <div class="admin-summary-label">Rata-rata Nilai (Semua)</div>
+                <div class="admin-summary-value" id="summary-avg-nilai">-</div>
+            </div>
+            <div class="admin-summary-card">
+                <div class="admin-summary-label">Total Entri Nilai</div>
+                <div class="admin-summary-value" id="summary-total-entry">-</div>
+            </div>
+        </section>
+
+        <!-- Toolbar: search (full width) + kategori konsisten -->
+        <section class="contact-toolbar admin-toolbar">
+            <div class="admin-toolbar-inner">
+                <div class="search-group admin-search-group">
+                    <input type="text" id="praktikan-search" placeholder="Cari praktikan..." aria-label="Cari praktikan" class="admin-search-input" />
+                    <button id="praktikan-search-clear" type="button" aria-label="Hapus pencarian">×</button>
+                </div>
+                <select id="praktikan-search-field" aria-label="Kategori pencarian" class="admin-search-select">
+                    <option value="nama">Nama</option>
+                    <option value="nrp">NRP</option>
+                    <option value="kelompok">Kelompok</option>
+                </select>
+            </div>
+            <small id="praktikan-search-info" class="search-info" aria-live="polite"></small>
+        </section>
+
+        <!-- Card View -->
+        <section id="card-view-section" aria-label="Daftar praktikan (Card View)">
+            <div id="admin-card-grid" class="contact-grid">
+                <p>Sedang memuat data praktikan...</p>
+            </div>
+        </section>
+
+        <!-- Table View: Data Praktikan + Tracking Asisten (toggle by mode) -->
+        <section id="table-view-section" class="hidden" aria-label="Tabel data">
+            <div class="table-toolbar">
+                <button id="admin-mode-toggle" type="button" class="admin-mode-toggle-btn" aria-label="Ganti mode tabel">
+                    Mode: Praktikan
+                </button>
+                <button id="download-table-btn" type="button" aria-label="Download tabel sebagai Excel" class="admin-download-excel-btn">
+                    <svg viewBox="0 0 24 24" class="admin-download-icon" aria-hidden="true">
+                        <path d="M12 17v-5M12 17l-4-4M12 17l4-4M4 21h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Download Excel
+                </button>
+            </div>
+            <div class="history-table-wrapper" id="admin-praktikan-table-wrapper">
+                <table class="history-table admin-table" id="admin-praktikan-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NRP</th>
+                            <th>Kelompok</th>
+                            <th>MP1</th>
+                            <th>MP2</th>
+                            <th>MP3</th>
+                            <th>MP4</th>
+                            <th>MP5</th>
+                            <th>W1</th>
+                            <th>W2</th>
+                            <th>W3</th>
+                            <th>W4</th>
+                            <th>W5</th>
+                            <th>Rerata</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body"></tbody>
+                </table>
+            </div>
+            <div class="history-table-wrapper admin-asisten-table-wrapper hidden" id="admin-asisten-table-wrapper">
+                <table class="history-table admin-table admin-asisten-table" id="admin-asisten-table">
+                    <thead>
+                        <tr id="admin-asisten-thead-row">
+                            <th>No</th>
+                            <th>Nama Asisten</th>
+                            <th>NRP</th>
+                            <th>Kode & Judul Modul</th>
+                            <!-- Kelompok 1..20 injected by JS -->
+                        </tr>
+                    </thead>
+                    <tbody id="admin-asisten-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Detail Progress (klik status kelompok di tabel asisten) -->
+    <div id="progress-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog admin-modal-dialog">
+            <div class="modal-header" id="progress-modal-title">Detail Progress Penilaian</div>
+            <div class="modal-body admin-modal-body">
+                <p id="progress-deadline-info" class="admin-deadline-info"></p>
+                <div class="admin-progress-list-wrapper" style="grid-column: 1 / -1;">
+                    <h3>Daftar Praktikan</h3>
+                    <ul id="progress-praktikan-list" class="admin-progress-list"></ul>
+                </div>
+            </div>
+            <button class="modal-close" id="progress-modal-close">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Profil Asisten (klik nama asisten) + Reminder WA -->
+    <div id="asisten-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog admin-modal-dialog">
+            <div class="modal-header" id="asisten-modal-title">Profil Asisten</div>
+            <div class="modal-body admin-modal-body admin-asisten-modal-body">
+                <div class="admin-modal-left">
+                    <div class="admin-modal-section">
+                        <div id="asisten-foto-container" class="admin-asisten-foto-container">
+                            <div id="asisten-foto-wrapper" class="admin-asisten-foto-wrapper">
+                                <img id="asisten-foto-img" src="" alt="Foto Profil" style="display: none;">
+                                <div id="asisten-foto-initial">?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-modal-section">
+                        <h3>Data Personal</h3>
+                        <dl class="admin-detail-list">
+                            <div><dt>Nama</dt><dd id="asisten-modal-nama">-</dd></div>
+                            <div><dt>NRP</dt><dd id="asisten-modal-nrp">-</dd></div>
+                            <div><dt>No HP</dt><dd id="asisten-modal-hp">-</dd></div>
+                            <div><dt>Email</dt><dd id="asisten-modal-email">-</dd></div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="admin-modal-right">
+                    <div class="admin-modal-section admin-reminder-section">
+                        <h3>Peringatan / Reminder</h3>
+                        <div class="admin-reminder-form">
+                            <label for="reminder-kelompok">Pilih Kelompok</label>
+                            <select id="reminder-kelompok" aria-label="Kelompok yang bermasalah">
+                                <option value="">Pilih Kelompok (1–20)</option>
+                            </select>
+                            <label for="reminder-deadline-display">Deadline</label>
+                            <div id="reminder-deadline-display" class="admin-reminder-deadline" aria-readonly="true">-</div>
+                            <label for="reminder-message">Pesan custom</label>
+                            <textarea id="reminder-message" placeholder="Opsional: tambahkan pesan..." rows="3"></textarea>
+                            <button type="button" id="reminder-kirim-wa" class="admin-reminder-wa-btn">Kirim WA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="modal-close" id="asisten-modal-close">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Detail Praktikan -->
+    <div id="praktikan-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog admin-modal-dialog">
+            <div class="modal-header" id="praktikan-modal-title">Detail Praktikan</div>
+            <div class="modal-body admin-modal-body">
+                <div class="admin-modal-left">
+                    <div class="admin-modal-section">
+                        <div id="modal-foto-container" style="text-align: center; margin-bottom: 20px;">
+                            <div id="modal-foto-wrapper" style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; background-color: var(--primary-gold, #3b82f6); margin: 0 auto;">
+                                <img id="modal-foto-img" src="" alt="Foto Profil" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                                <div id="modal-foto-initial" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; font-weight: bold;">?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-modal-section">
+                        <h3>Data Personal</h3>
+                        <dl class="admin-detail-list">
+                            <div><dt>Nama</dt><dd id="modal-nama">-</dd></div>
+                            <div><dt>NRP</dt><dd id="modal-nrp">-</dd></div>
+                            <div><dt>Kelompok</dt><dd id="modal-kelompok">-</dd></div>
+                            <div><dt>Email</dt><dd id="modal-email">-</dd></div>
+                            <div><dt>Telepon</dt><dd id="modal-telepon">-</dd></div>
+                            <div><dt>Asisten Pengampu</dt><dd id="modal-asisten">-</dd></div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="admin-modal-right">
+                    <div class="admin-modal-section">
+                        <h3>Ringkasan Nilai per Modul</h3>
+                        <p class="admin-chart-subtitle">Nilai akhir per modul (0-100). Hover/tap untuk detail.</p>
+                        <div class="admin-chart-wrapper">
+                            <canvas id="studentChart" aria-label="Chart nilai praktikan per modul" role="img"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="modal-close" id="praktikan-modal-close">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Library: Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Library: XLSX (untuk export Excel) -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <!-- Shared sidebar & layout logic -->
+    <script src="sidebar.js"></script>
+    <!-- Admin logic -->
+    <script src="admin.js"></script>
+</body>
+</html>
+
+

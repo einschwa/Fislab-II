@@ -1,0 +1,102 @@
+\praktikum[MP1]{Konstanta Planck}
+\subsection{Pendahuluan}
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \includegraphics[width=0.2\textwidth]{Gambar/Konstanta_Planlck.png} 
+\end{wrapfigure}
+“Mekanika Kuantum”, adalah dua kata yang terdengar sangat keren. Mekanika kuantum seakan akan menggambarkan sebuah wilayah yang megah dan hanya bisa terjamah oleh tangan-tangan mulia. Untuk mencapai Tarekat Kuantum yang sesungguhnya, seseorang harus melalui Gerbang yang bernama Konstanta Planck. Yap, tidak hanya menggambarkan sebuah tetapan biasa, tetapi tetapan yang bernilai $6{,}43 \times 10^{-34}$ ini merupakan tiket emas untuk memahami Kuantum dan seluk-beluknya. Nilai tersebut didapat dari seorang Max Planck yang lebih sering berfikir tentang angka daripada manusia. Dia menemukan bahwa energi radiasi elektromagnetik dipancarkan dalam paket kuanta, bingkisan-bingkisan rapi yang tak sembarang isinya. 
+
+Beberapa tahun setelahnya, muncul si jenius bernama Albert Einstein yang dengan ide cemerlangnya meminjam konsep paket kuanta Planck untuk menjelaskan efek fotolistrik. Ketika seberkas cahaya mengenai sebuah logam dengan frekuensi tertentu, elektron pada logam seakan-akan terpental. Hal ini seperti pada permainan billiard, dimana Bola putih (Foton) akan menyepak bola berwarna (elektron) sehingga bola masuk dalam lubang di pojok meja. Fenomena  Fotolistrik bukan hanya sekedar ide yang tersimpan, melainkan konsep awal untuk memahami kuantum dan teknologi yang mumpuni.
+
+
+\subsection{Tujuan}
+Tujuan dari praktikum ini adalah 
+\begin{enumerate}
+    \item Memahami pentingnya konstanta Planck,
+    \item Memahami efek fotolistrik,
+    \item Mengukur konstanta Planck menggunakan efek fotolistrik,
+\end{enumerate}
+\subsection{Alat dan Bahan}
+Peralatan yang digunakan dalam praktikum ini adalah:
+\begin{longtable}{ccc}
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endfirsthead % Bagian header tabel untuk halaman pertama
+
+\toprule
+\hline
+\textbf{Nama Alat} & \textbf{Jumlah} & \textbf{Detail} \\
+\hline
+\endhead % Bagian header tabel untuk halaman berikutnya
+
+\hline
+\bottomrule
+\endfoot % Bagian footer tabel untuk halaman berikutnya
+
+
+Lampu Natrium & 1 & sumber cahaya \\
+        Kotak dispersi & 1 & berisi celah kecil dan cermin \\
+        Fotodetektor & 1 & sensor cahaya \\
+        Sistem Kontroller & 1 & pengontrol dan pembaca hasil pengukuran \\
+\end{longtable}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Gambar/Skema_alat+_Konstanta_Planck.png}
+    \caption{Skema alat praktikum Franck-Hertz}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Pre-Lab}
+\begin{enumerate}
+    \item Apa yang kamu ketahui tentang Dualisme Cahaya? Jelaskan dengan memberi contoh fenomenanya dari setiap sifat!
+
+\item Apa yang kamu ketahui tentang efek fotolistrik? Sertakan sejarah bagaimana efek fotolistrik ini ditemukan.
+
+\item Bagaimana efek fotolistrik dapat memberikan bukti untuk sifat partikel dari cahaya?
+
+\item Jelaskan secara gamblang bagaimana konsep efek fotolistrik! Mengapa arus yang terukur bergantung pada intensitas cahaya dan frekuensi cahaya yang datang?
+
+\item Apa arti penting dari potensial penghenti pada efek fotolistrik?
+
+\item Jika sebuah logam dikenai sebuah cahaya dengan frekuensi $f$ dan terjadi arus dengan elektron bermuatan $e$ lepas dari permukaan logam, tentukan potensial penghenti dari elektron tersebut jika logam memiliki fungsi kerja $W_0$!
+
+\item Bagaimana fungsi kerja sebuah logam berhubungan dengan energi elektron yang dipancarkan dalam efek fotolistrik?
+
+\item Bagaimana efek fotolistrik berkontribusi pada pemahaman kita tentang kuantisasi energi elektron dalam bahan?
+
+\item Diketahui kecepatan cahaya $c$, panjang gelombang $\lambda$, potensial penghenti $V$, dan fungsi kerja logam $W_0$. Dari data tersebut bagaimana cara menentukan konstanta Planck? Turunkan persamaannya!
+
+\item Apa makna penting konstanta Planck dalam percobaan efek fotolistrik?
+    \infobox{Alat perlu dipanaskan lebih awal, sekitar 20-15 menit untuk mengoptimalkan pencahayaan dari lampu natrium}
+\end{enumerate}
+\subsection{In-Lab}
+\subsubsection*{Prosedur Praktikum}
+\begin{enumerate}
+    \item Tetapkan skala nol pada sistem kontroller dengan memutar \textit{zeroing} pada saat celah pada kotak dispersi ditutup hingga kondisi arus dan tegangan sama sama dengan nol
+    \item Setelah itu, atur perputaran pada kotak dispersi dengan memutar skala noniusnya 
+    \infobox{Hasil pembacaan pada skala nonius ini sama dengan panjang gelombang yang dihasilkan dalam nm}
+    \item Setelah itu variasikan nilai tegangan ini pada saat kondisi arus $I$ sama dengan nol dan atur sensitivitasnya dengan menekan tombol \textit{switch}
+    \Step{Untuk pengukuran yang lebih akurat, gunakan sensitivitas arus yang lebih kecil dengan memutar knop}
+    \item Kemudian catat semua nilai tegangan yang ada pada panjang gelombang yang berbeda juga 
+\end{enumerate}
+\subsection{Analisis Data}
+\begin{enumerate}
+    \item Menggunakan persamaan efek fotolistrik:
+    \begin{equation}
+         \frac{hc}{\lambda} =  eV -W
+    \end{equation}
+    di mana $e$ adalah muatan elektron, $V$ adalah tegangan konstan yang diukur dari fotosel, $f$ adalah frekuensi cahaya, dan W adalah fungsi kerja elektronik. 
+    \item Hitung konstanta Planck dengan menggunakan panjang gelombang yang direferensikan (mintalah data ini kepada asisten laboratorium Anda).
+    \item Gunakan grafik Anda untuk menghitung konstanta Planck.
+\end{enumerate}
+\subsection{Post-Lab}
+\begin{enumerate}
+    \item Jelaskan bagaimana efek fotolistrik memberikan bukti mengenai sifat partikel dari cahaya dan bagaimana kesimpulan utama yang dapat diambil tentang efek fotolistrik?
+    \item Bagaimana perubahan sudut prisma mempengaruhi panjang gelombang cahaya yang diteruskan ke fotosel? Jelaskan bagaimana variasi panjang gelombang ini mempengaruhi tegangan yang dihasilkan dalam efek fotolistrik.
+    \item Bagaimana jika Anda hanya menyinari cahaya polikromatik ke fotosell? Apakah efek fotolistrik akan terjadi?
+    \item Ceritakan hasil data percobaan yang kamu dapatkan? Kemudian hitung konstanta Planck dan bandingkan dengan nilai teoritisnya. Seberapa besar deviasi yang terjadi? 
+    \item Dari grafik tersebut, gunakan untuk menentukan konstanta Planck dan analisis apakah hubungan yang terbentuk sesuai dengan teori efek fotolistrik?
+    \item Identifikasi kemungkinan kesalahan eksperimental, kemudian jelaskan bagaimana setiap kesalahan tersebut dapat mempengaruhi hasil pengukuran konstanta Planck. Serta berikan saran perbaikan yang dapat dilakukan untuk meningkatkan akurasi percobaan?
+    
+\end{enumerate}

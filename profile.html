@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - FISLAB II</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-left-header" aria-label="Brand header">
+        <button id="hamburger" class="hamburger" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <a href="https://www.youtube.com" class="header-brand-link" aria-label="Kembali ke Home">
+            <span class="header-logo">Φ</span>
+            <span class="header-text">FISLAB II</span>
+        </a>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <aside id="sidebar" class="sidebar">
+        <div class="side-title">Menu</div>
+        <nav>
+            <a href="profile.html" class="active"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>Profile</a>
+            <a href="home.html"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></span>Dashboard</a>
+            <a href="admin.html" id="nav-admin" style="display: none;"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></span>Dashboard Admin</a>
+            <a href="modul.html"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/></svg></span>Modul Praktikum</a>
+            <a href="kontak.html"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>Kontak Asisten Laboratorium</a>
+            <a href="nilai.html" id="nav-nilai" style="display: none;"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg></span>Nilai Praktikum</a>
+            <a href="penilaian.html" id="nav-penilaian" style="display: none;"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg></span>Penilaian Praktikum</a>
+            <a href="penjadwal.html" id="nav-penjadwalan" style="display: none;"><span class="icon"><svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></span>Penjadwalan</a>
+            <a href="jadwal.html"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="1"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>Jadwal Praktikum</a>
+            <a href="#" id="nav-logout"><span class="icon"><svg viewBox="0 0 24 24"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/><path d="M14 16l4-4-4-4"/><path d="M8 12h10"/></svg></span>Keluar</a>
+        </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <main class="page-container">
+        <div id="view-profile-section">
+            <section class="profile-header">
+                <button id="profile-avatar" class="profile-avatar" type="button" aria-label="Unggah Foto Profil">
+                    <img id="profile-avatar-img" alt="Avatar" style="display:none; width:100%; height:100%; object-fit:cover;">
+                    <span id="profile-avatar-initial">...</span>
+                </button>
+                <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                <!-- Avatar modal: choose upload or delete -->
+                <div id="avatar-modal" class="avatar-modal" aria-hidden="true" style="display: none;">
+                    <div class="avatar-modal-backdrop"></div>
+                    <div class="avatar-modal-content" role="dialog" aria-modal="true" aria-label="Pilihan Foto Profil">
+                        <h3>Pilih tindakan</h3>
+                        <div class="avatar-modal-actions">
+                            <button id="avatar-upload-btn" class="btn">Unggah Foto</button>
+                            <button id="avatar-delete-btn" class="btn btn-danger">Hapus Foto</button>
+                        </div>
+                        <button id="avatar-modal-close" class="btn btn-secondary">Batal</button>
+                    </div>
+                </div>
+                <h1 id="profile-name" class="profile-name">Memuat data...</h1>
+                <p id="profile-nrp" class="profile-nrp"></p>
+                <span id="profile-role" class="profile-role"></span>
+            </section>
+            <section class="profile-details">
+                <h2 class="details-title">Informasi Detail</h2>
+                <div class="detail-row"><span class="detail-label">Nama Lengkap</span><span class="detail-value" id="detail-nama">...</span></div>
+                <div class="detail-row"><span class="detail-label">NRP</span><span class="detail-value" id="detail-nrp">...</span></div>
+                <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value" id="detail-email">...</span></div>
+                <div class="detail-row"><span class="detail-label">No. Telepon</span><span class="detail-value" id="detail-telepon">...</span></div>
+                <div class="detail-row"><span class="detail-label">Kelompok</span><span class="detail-value" id="detail-kelompok">...</span></div>
+            </section>
+            <div class="button-group">
+                <button class="btn" id="edit-profile-btn">Edit Profile</button>
+            </div>
+        </div>
+
+        <section class="edit-profile-form" id="edit-profile-form">
+            <h2 class="details-title">Edit Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="edit-nama">Nama Lengkap</label>
+                    <input type="text" id="edit-nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email</label>
+                    <input type="email" id="edit-email">
+                </div>
+                <div class="form-group">
+                    <label for="edit-telepon">No. Telepon</label>
+                    <input type="tel" id="edit-telepon">
+                </div>
+                <hr style="border-color: rgba(207, 163, 48, 0.3); margin: 30px 0;">
+                <p style="opacity: 0.8;">Untuk mengubah password, isi semua field di bawah ini. Kosongkan jika tidak ingin mengubah.</p>
+                <div class="form-group">
+                    <label for="edit-old-password">Password Lama</label>
+                    <input type="password" id="edit-old-password">
+                </div>
+                <div class="form-group">
+                    <label for="edit-new-password">Password Baru</label>
+                    <input type="password" id="edit-new-password">
+                </div>
+                <div class="form-group">
+                    <label for="edit-confirm-password">Konfirmasi Password Baru</label>
+                    <input type="password" id="edit-confirm-password">
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Batal</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
+    <script src="sidebar.js"></script>
+
+    <script src="profile.js"></script>
+</body>
+</html>

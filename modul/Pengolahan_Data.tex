@@ -1,0 +1,326 @@
+\section{Perhitungan dan Evaluasi Data}
+\subsection{Akurasi, Presisi, dan Ralat Eksperimental}
+Dalam semua eksperimen, komunikasi data adalah aspek yang sangat penting. Data harus dianalisis dan disajikan seakurat mungkin. Namun, tidak ada alat ukur atau prosedur pengukuran yang sempurna. Oleh karena itu, semua laporan data harus mencantumkan ralat eksperimental pada semua nilai yang diukur.
+
+Ralat eksperimental memengaruhi akurasi dan presisi data. Akurasi menggambarkan seberapa dekat suatu pengukuran dengan nilai yang diketahui atau diterima. Misalnya, jika massa sampel diketahui sebesar 5.85 gram. Pengukuran 5.81 lebih akurat dibandingkan dengan pengukuran 6.05 gram.
+
+Presisi menggambarkan seberapa dekat beberapa pengukuran satu sama lain. Semakin dekat nilai-nilai yang diukur satu sama lain, semakin tinggi presisinya. 
+
+Ingatlah bahwa pengukuran dapat presisi meskipun tidak akurat! Misalnya lagi, jika massa sampel yang diketahui sebesar 5.85 gram. Jika beberapa pengukuran diambil, dan semua pengukuran mendekati 8.5 gram. Pengukuran tersebut presisi karena dekat satu sama lain, tetapi tidak ada pengukuran yang akurat karena semuanya jauh dari massa sampel yang diketahui.
+
+\subsection{Jenis Ralat Eksperimental}
+Ada dua sumber ralat eksperimental:
+\subsubsection*{Ralat Sistematis}
+ralat sistematis adalah ralat yang terjadi setiap kali melakukan pengukuran tertentu. Contohnya termasuk ralat karena kalibrasi instrumen dan ralat karena prosedur atau asumsi yang salah. Jenis ralat ini membuat pengukuran menjadi lebih tinggi atau lebih rendah daripada jika tidak ada ralat sistematis. Contoh ralat sistematis dapat terjadi saat menggunakan neraca yang tidak dikalibrasi dengan benar. Setiap pengukuran yang dilakukan menggunakan alat ini akan salah. Pengukuran tidak bisa akurat jika ada ralat sistematis.
+\subsubsection*{Ralat Acak}
+ralat acak adalah kesalahan yang tidak dapat diprediksi. Termasuk ralat penilaian dalam membaca meteran atau skala dan ralat karena kondisi eksperimental yang berubah-ubah. Misalnya, mengukur suhu di ruang kelas selama beberapa hari. Variasi besar dalam suhu ruang kelas dapat menyebabkan ralat acak saat mengukur perubahan suhu eksperimental. Jika ralat acak dalam suatu eksperimen kecil, maka eksperimen dikatakan presisi.
+
+\subsection{Analisis Data}
+Ketidakpastian dalam data dapat digambarkan dengan menghitung mean dan standar deviasi (atau median dan interkuartil). 
+Mean dari sekumpulan data adalah jumlah semua nilai pengukuran dibagi dengan jumlah pengukuran. Setelah mengukur kuantitas \(x\) diulang \(n\) kali, mean, \(\bar{x}\), ditentukan menggunakan rumus:
+\[
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + x_3 + \cdots + x_n}{n}
+\]
+di mana \(x_1\), \(x_2\), dll., adalah nilai pengukuran, dan \(n\) adalah jumlah pengukuran. Untuk Median dari sekumpulan data adalah titik tengah dari data setelah semuanya diurutkan. Untuk jumlah pengukuran ganjil, median dapat dengan mudah ditentukan karena data dapat dibagi menjadi dua bagian yang sama dengan satu pembagi di tengah data. Namun, untuk jumlah pengukuran genap (untuk menggambarkan lebih baik, bayangkan jika ada \(n\) jumlah pengukuran, \(n\) adalah genap), median dihitung menggunakan rata-rata dari titik data ke-\(\frac{n}{2}\) dan ke-\(\frac{n}{2} + 1\).
+
+Misalkan, periode pendulum diukur 10 kali, dan diperoleh nilai 3.14, 3.11, 3.21, 3.14, 3.19, 3.09, 3.15, 3.13, 3.12, dan 3.16 (semua dalam detik). Dari data tersebut, dapat dilihat bahwa data cukup presisi sehingga nilai mean dapat digunakan untuk mewakili data.
+Dan tentu saja, ketika beberapa pengulangan eksperimen dilakukan, harus dinyatakan standar deviasi (jika menggunakan mean dari data), atau interkuartil (jika menggunakan median). Standar deviasi diberikan oleh persamaan
+\[
+\sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1}}
+\]
+di mana \(x_i\) adalah pengukuran ke-\(i\), \(\bar{x}\) adalah mean, dan \(n\) adalah jumlah pengukuran.
+Untuk interkuartil, data asli yang diurutkan dibagi menjadi empat bagian, dengan tiga pembagi. Pembagi pertama adalah kuartil bawah, pembagi kedua adalah median, dan pembagi ketiga adalah kuartil atas. Rentang interkuartil didefinisikan sebagai perbedaan antara kuartil atas dan kuartil bawah. MATLAB dapat digunakan untuk ini daripada melakukannya secara manual. Sintaks untuk standar deviasi dan rentang interkuartil diberikan sebagai berikut
+\begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{MATLAB}]
+    \begin{lstlisting}[language=Matlab]
+periods = [3.14;
+           3.11;
+           3.21;
+           3.14;
+           3.19;
+           3.09;
+           3.15;
+           3.13;
+           3.12;
+           3.16];%Data
+% Menghitung mean
+mean_period = mean(periods);
+disp(mean_period);
+% Menghitung standar deviasi
+std_period = std(periods);
+disp(std_period);
+% Menghitung median
+mid_period = median(periods);
+disp(mid_period);
+% Menghitung rentang interkuartil (IQR)
+iqr_period = iqr(periods);
+disp(iqr_period);
+    \end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{Python}]
+    \begin{lstlisting}[language=Python]
+import numpy as np
+from scipy import stats
+
+# Data
+periods = np.array([3.14, 3.11, 3.21, 3.14, 3.19, 3.09, 3.15, 3.13, 3.12, 3.16])
+
+# Menghitung mean
+mean_period = np.mean(periods)
+print(f'Mean: {mean_period}')
+
+# Menghitung standar deviasi
+std_period = np.std(periods, ddof=1)  # ddof=1 untuk sampel standar deviasi
+print(f'Standard Deviation: {std_period}')
+
+# Menghitung median
+mid_period = np.median(periods)
+print(f'Median: {mid_period}')
+
+# Menghitung rentang interkuartil (IQR)
+iqr_period = stats.iqr(periods)
+print(f'Interquartile Range (IQR): {iqr_period}')
+    \end{lstlisting}
+\end{tcolorbox}
+
+Semua data harus memiliki kesalahan yang diwakili oleh standar deviasi atau rentang interkuartil, tergantung pada apa yang digunakan. Untuk data di atas, dengan menggunakan mean, nilai akhir adalah \(3.1440 \pm 0.0360\) s, dan dengan menggunakan median, nilai akhir adalah \(3.1400 \pm 0.0400\) s.
+
+
+\subsection{Propagasi ralat}
+Misalkan dua besaran terukur $x$ dan $y$ memiliki ketidakpastian masing-masing $\Delta x$ dan $\Delta y$. Jika kita ingin menghitung besaran baru $z$ berdasarkan $x$ dan $y$, bagaimana ketidakpastian $\Delta z$ ditentukan?
+
+\subsection{Penjumlahan atau Pengurangan}
+Ketidakpastian $z$ pada bentuk persamaan $z=x+y$ atau $z=x-y$ dapat dihitung melalui
+\begin{equation}
+    \Delta z = \sqrt{(\Delta x)^2 + (\Delta y)^2}
+\end{equation}
+\subsubsection*{Contoh 1}
+Hasil pengukuran dua buah tali, tali A dan tali berupa \(3.51 \pm 0.5 \, \text{cm}\), dan \(4.78 \pm 0.5 \, \text{cm}\). Ketika menggabungkan kedua tali ini, yaitu tali C, ketidakpastian dalam panjang
+tali yang dihasilkan akan menjadi:
+\[
+\Delta C = \sqrt{(\Delta A)^2 + (\Delta B)^2}
+\]
+\[
+\Delta C = \sqrt{(0.5)^2 + (0.5)^2} \approx 0.70
+\]
+Jadi, tali C memiliki panjang \(8.29 \pm 0.70 \, \text{cm}\).
+\subsection{Perkalian atau Pembagian, \(z = xy\) atau \(z = \frac{x}{y}\)}
+Untuk perkalian dan pembagian, dengan mengambil nilai terbesar untuk \(x\) dan \(y\):
+\[
+z + \Delta z = (x + \Delta x)(y + \Delta y)
+\]
+\[
+z + \Delta z = xy + x\Delta y + y\Delta x + \Delta x \Delta y
+\]
+\[
+z + \Delta z \approx xy + x\Delta y + y\Delta x
+\]
+\[
+\Delta z \approx x\Delta y + y\Delta x
+\]
+Perhatikan bahwa istilah \(\Delta x \Delta y\) diabaikan karena sangat kecil dibandingkan dengan istilah lainnya. Sederhanakan ekspresi ini, kita mendapatkan:
+\[
+\Delta z = x\Delta y + y\Delta x
+\]
+\[
+\frac{\Delta z}{z} = \frac{x \Delta y}{xy} + \frac{y \Delta x}{xy}
+\]
+\[
+\frac{\Delta z}{z} = \frac{\Delta y}{y} + \frac{\Delta x}{x}
+\]
+Pada bagian sebelumnya, kita tahu bahwa menggabungkan ketidakpastian dari dua besaran dengan menambahkannya
+dijelaskan melalui:
+\[
+\frac{\Delta z}{z} = \sqrt{\left( \frac{\Delta x}{x} \right)^2 + \left( \frac{\Delta y}{y} \right)^2}
+\]
+Jadi, bentuk akhirnya menjadi:
+\[
+\Delta z = z \sqrt{\left( \frac{\Delta x}{x} \right)^2 + \left( \frac{\Delta y}{y} \right)^2}
+\]
+\subsubsection*{Contoh 2}
+Hasil pengukuran percepatan gravitasi Bumi menggunakan gravitometer dan Anda mendapatkan nilai
+\(9.87 \pm 0.12 \, \text{m/s}^2\). Untuk massa yang telah diukur sebelumnya sebesar \(5.21 \pm 0.87 \, \text{kg}\), ketidakpastian gaya berat tersebut adalah:
+\[
+\frac{\Delta W}{W} = \sqrt{\left( \frac{\Delta m}{m} \right)^2 + \left( \frac{\Delta a}{a} \right)^2}
+\]
+\[
+\Delta W = ma \sqrt{\left( \frac{\Delta m}{m} \right)^2 + \left( \frac{\Delta a}{a} \right)^2}
+\]
+\[
+\Delta W = (5.21)(9.87) \sqrt{\left( \frac{0.87}{5.21} \right)^2 + \left( \frac{0.12}{9.87} \right)^2} \approx 8.61
+\]
+Jadi, gaya berat tersebut adalah \(51.42 \pm 8.61 \, \text{N}\).
+\subsection{Fungsi, \(z = f(x, y)\)}
+Sekarang, bagaimana jika \(z = \sin(x)\), \(z = \cos(y)\), atau bahkan \(z = e^x\)?
+Persamaan umum untuk kasus-kasus ini adalah, untuk \(z = f(x, y, \ldots)\):
+\[
+\Delta z = \sqrt{\left( \frac{\partial f}{\partial x} \Delta x \right)^2 + \left( \frac{\partial f}{\partial y} \Delta y \right)^2 + \ldots}
+\]
+\subsubsection*{Contoh 3}
+Hasil pengukuran salah satu sudut dalam segitiga didapat dengan menghitung sinusnya. Salah satu hasil pengukuran sudut terbesarnya adalah \(3.74 \pm 0.24 \, \text{rad}\). Sinus dari sudut tersebut adalah:
+\[
+z = \sin(\theta)
+\]
+\[
+\Delta z = \sqrt{\left( \frac{\partial z}{\partial \theta} \Delta \theta \right)^2}
+\]
+\[
+\Delta z = \sqrt{\left( \cos(\theta) \Delta \theta \right)^2}
+\]
+\[
+\Delta z = \sqrt{(\cos(3.74))^2 (0.24)^2} \approx 0.20
+\]
+Jadi, sinus dari sudut tersebut adalah \(-0.56 \pm 0.20\).
+\subsection{Standar Grafik}
+
+\subsection{Variabel Independen dan Dependen}
+Saat membuat grafik, variabel independen diplot pada sumbu $x$, sedangkan variabel dependen diplot pada sumbu $y$. Contohnya, dalam eksperimen kinematika, waktu sering kali menjadi variabel independen, sedangkan posisi adalah variabel dependen.
+
+\subsection{Visualisasi Standard Grafik}
+Beberapa panduan dalam membuat grafik yang baik:
+\begin{itemize}
+    \item Setiap sumbu harus diberi label dengan nama variabel dan satuannya.
+    \item Harus ada tanda skala yang cukup jelas pada setiap sumbu.
+    \item Ukuran font harus disesuaikan agar mudah dibaca.
+    \item Grafik harus menyertakan batang kesalahan (error bars) untuk menunjukkan ketidakpastian eksperimen.
+    \item berikut adalah contoh bentuk grafik yang benar dalam kode matlab maupun kode python 
+    \begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{MATLAB}]
+\begin{lstlisting}[language=Matlab]
+voltage = [1; 2; 3; 4; 5];
+current_avg = [
+    0.0037 0.0005;
+    0.0067 0.0003;
+    0.0098 0.0002;
+    0.0126 0.0003;
+    0.0159 0.0004
+];
+
+figure
+scatter(voltage, current_avg(:, 1), 36, 'filled')
+hold on
+errorbar(voltage, current_avg(:, 1), current_avg(:, 2), 'LineStyle', 'none', 'Color', 'red', 'LineWidth', 1)
+xlabel('Voltage(V)')
+ylabel('Current(A)')
+    \end{lstlisting}
+\end{tcolorbox}
+    \begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{Python}]
+    \begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Data
+voltage = np.array([1, 2, 3, 4, 5])
+current_avg = np.array([
+    [0.0037, 0.0005],
+    [0.0067, 0.0003],
+    [0.0098, 0.0002],
+    [0.0126, 0.0003],
+    [0.0159, 0.0004]
+])
+
+# Membuat plot
+plt.figure()
+plt.scatter(voltage, current_avg[:, 0], s=36, c='blue', label='Current(A)')
+plt.errorbar(voltage, current_avg[:, 0], yerr=current_avg[:, 1], fmt='o', linestyle='none', color='red', linewidth=1)
+plt.xlabel('Voltage(V)')
+plt.ylabel('Current(A)')
+plt.legend()
+plt.show()
+    \end{lstlisting}
+    \end{tcolorbox}
+\end{itemize}
+\begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Gambar/plot_latex_fislab2.png}
+        \caption{Bentuk Standard Grafik}
+        \label{fig:enter-label}
+\end{figure}
+
+\subsection{Regresi Linear}
+Regresi linear sering digunakan untuk mendapatkan kemiringan (slope) dan titik potong (intercept). Persamaan regresi linier adalah:
+\begin{equation}
+    y = mx + c
+\end{equation}
+Di mana $m$ adalah kemiringan dan $c$ adalah titik potong dengan sumbu $y$. Untuk menentukan $m$ dan $c$ menggunakan metode regresi berbobot, digunakan persamaan berikut:
+\begin{align}
+    % Koefisien kemiringan (m)
+    m &= \frac{N \sum{xy} - \sum{x} \sum{y}}{N \sum{x^2} - (\sum{x})^2}\\
+    % Intersep (c)
+    c &= \frac{\sum{y} - m \sum{x}}{N}
+\end{align}
+Dengan Bobot error untuk $m$ dan $c$ itu sendiri diberikan dalam bentuk
+\begin{align}
+    % Error pada koefisien kemiringan (error_m)
+    \Delta m &= \sqrt{\frac{1}{N-2} \cdot \left( \frac{\sum{y^2} - c \sum{y} - m \sum{xy}}{\sum{x^2} - (\sum{x})^2} \right)}\\
+    % Error pada intersep (error_c)
+    \Delta c &= \Delta m \cdot \sqrt{\frac{\sum{x^2}}{N}}
+\end{align}
+Untuk implementasi kode sebagai berikut
+
+\begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{MATLAB}]
+\begin{lstlisting}[language=Matlab]
+voltage =[1;2;3;4;5];
+current_avg =[0.0037 0.0005;
+0.0067 0.0003;
+0.0098 0.0002;
+0.0126 0.0003;
+0.0159 0.0004];%Data
+
+p = polyfit ( voltage , current_avg (: ,1) ,1) ;%Regresi Linier
+disp ([ 'Slope:' num2str ( p (1) ) ])
+disp ([ 'y- intercept:' num2str ( p (2) ) ])
+\end{lstlisting}
+\end{tcolorbox}
+\begin{tcolorbox}[colframe=gray!100!black, colback=backcolour, title=\textbf{Python}]
+    \begin{lstlisting}[language=Python]
+import numpy as np
+voltage = np.array([1, 2, 3, 4, 5])
+current_avg = np.array([
+    [0.0037, 0.0005],
+    [0.0067, 0.0003],
+    [0.0098, 0.0002],
+    [0.0126, 0.0003],
+    [0.0159, 0.0004]
+])# Data
+
+# Melakukan regresi linier
+p = np.polyfit(voltage, current_avg[:, 0], 1)
+print('Slope:', p[0])
+print('y-intercept:', p[1])
+    \end{lstlisting}
+\end{tcolorbox}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Hasil pengukuran sampel. Pengulangan diambil rata-rata dan standar deviasi digunakan.}
+    \begin{tabular}{ccc}
+    \toprule
+    \midrule
+    Tegangan (V) & Arus (A) & Rata-rata Arus (A) \\
+    \midrule
+    1 & 0.0041 & 0.0037 ± 0.0005 \\
+      & 0.0039 & \\
+      & 0.0034 & \\
+      & 0.0042 & \\
+      & 0.0031 & \\
+    \midrule
+    2 & 0.0066 & 0.0067 ± 0.0003 \\
+      & 0.0065 & \\
+      & 0.0070 & \\
+      & 0.0071 & \\
+      & 0.0063 & \\
+    \midrule
+    3 & 0.0097 & 0.0098 ± 0.0002 \\
+      & 0.0096 & \\
+      & 0.0100 & \\
+      & 0.0099 & \\
+      & 0.0100 & \\
+    \midrule
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+

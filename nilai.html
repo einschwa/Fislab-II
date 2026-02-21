@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nilai Praktikum - FISLAB II</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-left-header" aria-label="Brand header">
+        <button id="hamburger" class="hamburger" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <a href="home.html" class="header-brand-link" aria-label="Kembali ke Home">
+        <span class="header-logo">Φ</span>
+            <span class="header-text">FISLAB II</span>
+        </a>
+    </header>
+    <div class="top-border-box" aria-hidden="true"></div>
+    <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Toggle night mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <aside id="sidebar" class="sidebar" aria-label="Sidebar navigasi">
+        <div class="side-title">Menu</div>
+        <nav>
+            <a href="profile.html" id="nav-profile">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span class="label">Profile</span>
+            </a>
+            <a href="home.html" id="nav-home">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="admin.html" id="nav-admin" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="8" height="8" rx="1"/>
+                        <rect x="13" y="3" width="8" height="8" rx="1"/>
+                        <rect x="3" y="13" width="8" height="8" rx="1"/>
+                        <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard Admin</span>
+            </a>
+            <a href="modul.html" id="nav-modul">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="8" height="16" rx="1"/>
+                        <rect x="13" y="4" width="8" height="16" rx="1"/>
+                    </svg>
+                </span>
+                <span class="label">Modul Praktikum</span>
+            </a>
+            <a href="kontak.html" id="nav-contacts">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                        <path d="M3 7l9 6 9-6"/>
+                    </svg>
+                </span>
+                <span class="label">Kontak Asisten Laboratorium</span>
+            </a>
+            <a href="nilai.html" id="nav-nilai" class="active">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Nilai Praktikum</span>
+            </a>
+            <a href="penilaian.html" id="nav-penilaian" style="display: none;">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    </svg>
+                </span>
+                <span class="label">Penilaian Praktikum</span>
+            </a>
+            <a href="jadwal.html" id="nav-schedule">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="17" rx="1"/>
+                        <path d="M8 2v4M16 2v4M3 10h18"/>
+                    </svg>
+                </span>
+                <span class="label">Jadwal Praktikum</span>
+            </a>
+            <a href="#" id="nav-logout">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+                        <path d="M14 16l4-4-4-4"/>
+                        <path d="M8 12h10"/>
+                    </svg>
+                </span>
+                <span class="label">Keluar</span>
+            </a>
+        </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+    <main class="page-container">
+
+        <div class="nilai-table-container">
+            <h2 style="margin-top: 0;">Detail Nilai Praktikum</h2>
+            <p id="nilai-subtitle" class="page-subtitle">Memuat data...</p>
+            <table class="nilai-table">
+                <thead>
+                    <tr>
+                        <th>Modul</th>
+                        <th>Status</th>
+                        <th>Total akhir</th>
+                        <th>Terakhir diubah</th>
+                        <th>Catatan</th>
+                    </tr>
+                </thead>
+                <tbody id="nilai-body"></tbody>
+            </table>
+            <div id="nilai-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-header" id="modal-title">Detail Nilai</div>
+                    <div class="modal-body" id="modal-body">-</div>
+                    <button class="modal-close" id="modal-close">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="nilai.js"></script>
+</body>
+</html>
+
