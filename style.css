@@ -507,6 +507,10 @@ body.sidebar-open .sidebar-overlay {
     font-weight: 600;
     margin-bottom: 8px;
     font-size: 1rem;
+    color: var(--text-primary);
+}
+body.dark .form-group label {
+    color: var(--text-primary-dark);
 }
 
 .form-group input,
@@ -1133,24 +1137,23 @@ body.dark .bug-form textarea:focus {
     overflow-x: auto; /* allow horizontal scroll if columns overflow */
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 8px;
-    background: var(--dark-bg);
+    background: var(--card-bg);
     position: relative;
 }
 body.dark .history-table-wrapper {
     border-color: rgba(255,255,255,0.18);
-    background: #1f1f1f;
+    background: var(--card-bg-dark);
 }
 
 /* Keep header visible while scrolling */
 .history-table-wrapper thead th {
     position: sticky;
     top: 0;
-    background: var(--dark-bg);
+    background: var(--card-bg);
     z-index: 2;
     color: var(--primary-gold);
 }
-body.dark .history-table-wrapper thead th { background: #2a2a2a; }
-
+body.dark .history-table-wrapper thead th { background: var(--card-bg-dark); color: var(--primary-gold-dark); }
 /* Ensure table has enough width so horizontal scroll appears when needed */
 .history-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .history-table th, .history-table td { padding: 8px 10px; text-align: left; white-space: nowrap; }
@@ -1217,11 +1220,11 @@ body.dark .history-table button.cancel-grade:hover { background:#383838; }
     }
 }
 .attendance-table th, .attendance-table td {
-    border-bottom: 1px solid var(--primary-gold);
+    border-bottom: 1px solid var(--bg-secondary);
     padding: 8px 10px;
     text-align: left;
 }
-.attendance-table th { background: rgba(207,163,72,0.08); }
+.attendance-table th { background:var(--accent-hover-dark); }
 .attendance-actions { display: flex; gap: 8px; margin-top: 12px; }
 .status-radio { display: flex; gap: 8px; align-items: center; }
 .status-radio label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
@@ -2172,7 +2175,7 @@ body.dark .modal-dialog {
 
 .assessment-form {
     background-color: var(--bg-secondary);
-    border: 2px solid var(--text-primary);
+    border: 2px solid var(--accent-primary);
     border-radius: var(--radius-lg);
     padding: 30px;
     margin-bottom: 30px;
@@ -2236,7 +2239,16 @@ body.dark .modal-dialog {
 .assessment-scoring-grid .form-group {
     margin-bottom: 0;
 }
+#helper-text {
+  color: var(--text-secondary);          /* softer gray */
+  font-size: 0.875rem;  /* slightly smaller than normal text */
+  opacity: 1;           /* make it fully visible */
+  margin-top: 4px;      /* spacing from input above */
+}
 
+body.dark #helper-text {
+    color: var(--text-secondary-dark);
+}
 body.dark .assessment-avatar {
     border-color: var(--accent-primary-dark);
     background: var(--bg-secondary-dark);
@@ -2342,7 +2354,7 @@ body.dark .history-table td {
 /* Export buttons styling (penilaian.html) */
 .history-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
 .export-btn {
-    background: var(--text-color);
+    background: var(--text-primary-dark);
     color: var(--primary-gold);
     border: 2px solid var(--primary-gold);
     padding: 10px 18px;
