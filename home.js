@@ -305,7 +305,7 @@
                                         return k[modulId] && Array.isArray(k[modulId].aslab) && k[modulId].aslab.includes(assistantNrp);
                                     })
                                     : [];
-                                attnKelompok.innerHTML = '<option value="">Pilih Kelompok</option>' + matchingKelompok.map(kId => `<option value="${kId}">${kId} - ${kelompok[kId].namaKelompok || ''}</option>`).join('');
+                                attnKelompok.innerHTML = '<option value="">Pilih Kelompok</option>' + matchingKelompok.map(kId => `<option value="${kId}">${kId}</option>`).join('');
 
                                 function renderTableFromUsers() {
                                     const kId = attnKelompok.value;
