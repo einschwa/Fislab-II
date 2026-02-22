@@ -68,11 +68,24 @@
                     } 
                 }
 
+                // Siapkan foto atau inisial untuk avatar
+                const photo = asisten.photoURL || asisten.photo || asisten.fotoUrl || asisten.foto || asisten.avatar || asisten.profilePhoto || null;
+                const getInitials = (fullName) => {
+                    if (!fullName) return '';
+                    const parts = fullName.trim().split(/\s+/);
+                    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+                    return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+                };
+                const initials = getInitials(asisten.nama || '');
+
                 // Buat Kartu Kontak
                 const cardHTML = `
                     <div class="contact-card" data-nrp="${asisten.nrp}" data-nama="${asisten.nama}" data-telepon="${asisten.telepon || ''}">
                         <div class="contact-header">
-                            <div class="contact-avatar">${asisten.nama.charAt(0).toUpperCase()}</div>
+                            <div class="contact-avatar" aria-hidden="true">
+                                ${photo ? `<img src="${photo}" alt="Foto ${asisten.nama}" onload="this.parentElement.classList.add('has-photo')" onerror="this.style.display='none'; this.parentElement.classList.remove('has-photo')">` : ''}
+                                <div class="avatar-initials">${initials}</div>
+                            </div>
                             <div class="contact-info">
                                 <h3>${asisten.nama}</h3>
                                 <p class="contact-role">Asisten Laboratorium</p>
