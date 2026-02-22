@@ -114,9 +114,7 @@
             // Event listener untuk setiap kartu
             contactGrid.querySelectorAll('.contact-card').forEach(card => {
                 card.addEventListener('click', () => {
-                    const nrp = card.dataset.nrp;
-                    const telepon = card.dataset.telepon;
-                    const nama = card.dataset.nama;
+                    const { nrp, telepon, nama } = card.dataset;
                     if (!telepon) { alert('Nomor telepon tidak tersedia.'); return; }
                     activeAssistant = { nrp, telepon, nama };
                     // Prefill modal
@@ -174,6 +172,7 @@
         function updateSearchInfo(visible){
             if (!searchInfo) return;
             const total = document.querySelectorAll('.contact-card').length;
+// sourcery skip: dont-reassign-parameters
             if (visible === undefined) visible = total;
             searchInfo.textContent = (visible === total) ? '' : `${visible} dari ${total} asisten ditampilkan`;
         }
