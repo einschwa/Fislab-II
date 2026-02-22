@@ -102,6 +102,49 @@
 .profile-avatar img { border-radius: 999px; display: block; width:100%; height:100%; }
 .profile-avatar #profile-avatar-initial { font-size: 34px; font-weight: 700; color: var(--text-color); }
 
+/* Contact card avatar (small) */
+.contact-avatar {
+    aspect-ratio: 1/1;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #e2e8f0;
+    color: #0f172a;
+    flex: 0 0 48px;
+    margin-right: 12px;
+}
+.contact-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-full);
+}
+.contact-avatar .avatar-initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* When a valid photo is loaded, hide the initials */
+.contact-avatar.has-photo .avatar-initials { display: none; }
+/* If there's no loaded photo, hide the img element (keeps layout clean) */
+.contact-avatar:not(.has-photo) img { display: none; }
+.contact-avatar .avatar-initials { font-size: 14px; }
+
+.contact-header { display: flex; align-items: center; gap: 8px; }
+.contact-info h3 { margin: 0; font-size: 1rem; }
+.contact-info .contact-role { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+
 @media (min-width: 1024px) {
     .profile-avatar { width: 120px; height: 120px; }
     .profile-avatar #profile-avatar-initial { font-size: 42px; }
