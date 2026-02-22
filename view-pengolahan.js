@@ -4,7 +4,34 @@
   const tocList = document.getElementById('toc-list');
   const backBtn = document.getElementById('back-to-modul');
 
-  function renderMath(){ if(window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([contentEl]).catch(()=>{}); }
+  function waitForMathJaxReady(timeoutMs = 8000) {
+    const start = Date.now();
+    return new Promise((resolve) => {
+      function check() {
+        const mj = window.MathJax;
+        if (mj && mj.typesetPromise) {
+          if (mj.startup && mj.startup.promise) {
+            mj.startup.promise.then(() => resolve(mj)).catch(() => resolve(mj));
+          } else {
+            resolve(mj);
+          }
+          return;
+        }
+        if (Date.now() - start >= timeoutMs) {
+          resolve(null);
+          return;
+        }
+        setTimeout(check, 50);
+      }
+      check();
+    });
+  }
+
+  async function renderMath() {
+    const mj = await waitForMathJaxReady();
+    if (!mj) return;
+    try { await mj.typesetPromise([contentEl]); } catch (_) {}
+  }
 
   function slugify(s){ return String(s||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 

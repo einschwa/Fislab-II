@@ -102,6 +102,49 @@
 .profile-avatar img { border-radius: 999px; display: block; width:100%; height:100%; }
 .profile-avatar #profile-avatar-initial { font-size: 34px; font-weight: 700; color: var(--text-color); }
 
+/* Contact card avatar (small) */
+.contact-avatar {
+    aspect-ratio: 1/1;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #e2e8f0;
+    color: #0f172a;
+    flex: 0 0 48px;
+    margin-right: 12px;
+}
+.contact-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-md);
+}
+.contact-avatar .avatar-initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* When a valid photo is loaded, hide the initials */
+.contact-avatar.has-photo .avatar-initials { display: none; }
+/* If there's no loaded photo, hide the img element (keeps layout clean) */
+.contact-avatar:not(.has-photo) img { display: none; }
+.contact-avatar .avatar-initials { font-size: 14px; }
+
+.contact-header { display: flex; align-items: center; gap: 8px; }
+.contact-info h3 { margin: 0; font-size: 1rem; }
+.contact-info .contact-role { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+
 @media (min-width: 1024px) {
     .profile-avatar { width: 120px; height: 120px; }
     .profile-avatar #profile-avatar-initial { font-size: 42px; }
@@ -398,6 +441,15 @@ body.sidebar-open .sidebar-overlay {
     padding: 0 16px;
 }
 
+@media (max-width: 640px) {
+    .page-container { margin: 88px auto 40px; padding: 0 12px; }
+    .page-header { padding: var(--spacing-md); }
+    .page-title { font-size: 1.8rem; }
+    .page-subtitle { font-size: 1rem; }
+    .sidebar { width: min(320px, 86vw); }
+    .form-grid { grid-template-columns: 1fr; }
+}
+
 .page-header {
     background: var(--bg-secondary);
     color: var(--text-primary);
@@ -498,6 +550,10 @@ body.sidebar-open .sidebar-overlay {
     font-weight: 600;
     margin-bottom: 8px;
     font-size: 1rem;
+    color: var(--text-primary);
+}
+body.dark .form-group label {
+    color: var(--text-primary-dark);
 }
 
 .form-group input,
@@ -1124,24 +1180,23 @@ body.dark .bug-form textarea:focus {
     overflow-x: auto; /* allow horizontal scroll if columns overflow */
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 8px;
-    background: var(--dark-bg);
+    background: var(--card-bg);
     position: relative;
 }
 body.dark .history-table-wrapper {
     border-color: rgba(255,255,255,0.18);
-    background: #1f1f1f;
+    background: var(--card-bg-dark);
 }
 
 /* Keep header visible while scrolling */
 .history-table-wrapper thead th {
     position: sticky;
     top: 0;
-    background: var(--dark-bg);
+    background: var(--card-bg);
     z-index: 2;
     color: var(--primary-gold);
 }
-body.dark .history-table-wrapper thead th { background: #2a2a2a; }
-
+body.dark .history-table-wrapper thead th { background: var(--card-bg-dark); color: var(--primary-gold-dark); }
 /* Ensure table has enough width so horizontal scroll appears when needed */
 .history-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .history-table th, .history-table td { padding: 8px 10px; text-align: left; white-space: nowrap; }
@@ -1208,11 +1263,11 @@ body.dark .history-table button.cancel-grade:hover { background:#383838; }
     }
 }
 .attendance-table th, .attendance-table td {
-    border-bottom: 1px solid var(--primary-gold);
+    border-bottom: 1px solid var(--bg-secondary);
     padding: 8px 10px;
     text-align: left;
 }
-.attendance-table th { background: rgba(207,163,72,0.08); }
+.attendance-table th { background:var(--accent-hover-dark); }
 .attendance-actions { display: flex; gap: 8px; margin-top: 12px; }
 .status-radio { display: flex; gap: 8px; align-items: center; }
 .status-radio label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
@@ -1562,7 +1617,7 @@ body.dark .cancel-btn:hover { background: rgba(239, 68, 68, 0.1); border-color: 
     width: 60px;
     height: 60px;
     background: var(--primary-gold);
-    border-radius: 50%;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1679,6 +1734,62 @@ body.dark #modul-content, body.dark .module-viewer-grid, body.dark .viewer-col, 
     margin-bottom: 1rem;
 }
 
+/* Prevent long text from overflowing the content column */
+#modul-content {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+#modul-content p,
+#modul-content li,
+#modul-content figcaption,
+#modul-content td,
+#modul-content th,
+#modul-content a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+#modul-content a { hyphens: auto; }
+
+/* MathJax (SVG output): keep display equations within viewport */
+#modul-content mjx-container[display="true"] {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Code blocks should scroll horizontally (not wrap) */
+.content-col pre { white-space: pre; }
+.content-col code { overflow-wrap: anywhere; word-break: break-word; }
+.content-col pre code { overflow-wrap: normal; word-break: normal; }
+
+/* Pandoc/LaTeX blocks (used by public/modul-html/Data.html) */
+#modul-content .tcolorbox {
+    max-width: 100%;
+    min-width: 0;
+    margin: 12px 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    overflow: hidden;
+}
+body.dark #modul-content .tcolorbox {
+    background: var(--card-bg-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-color-dark);
+}
+#modul-content .tcolorbox .sourceCode {
+    max-width: 100%;
+    min-width: 0;
+    overflow: auto;
+}
+#modul-content pre.sourceCode {
+    max-width: 100%;
+    margin: 0;
+}
+
 /* Assistant cards (used in viewer right column) */
 .assistant-card {
     display: flex;
@@ -1712,6 +1823,29 @@ body.dark .assistant-card {
 #modul-alat-img + figcaption, img.modul-alat + figcaption, #modul-alat-img[alt] {
     text-align: center;
 }
+
+/* Mobile-friendly module content */
+@media (max-width: 640px) {
+    #modul-content img:first-of-type {
+        float: none;
+        display: block;
+        max-width: 100%;
+        margin: 0 auto 1rem;
+    }
+    #modul-content img:not(:first-of-type) { max-width: 100%; }
+    #modul-alat-img, img.modul-alat { max-width: 92%; }
+    #modul-content ul, #modul-content ol { padding-left: 1.5rem; }
+}
+
+/* Figures generated from LaTeX: keep readable on small screens */
+#modul-content figure[data-latex-placement] { width: min(70%, 720px); margin: 1rem auto; }
+@media (max-width: 640px) {
+    #modul-content figure[data-latex-placement] { width: 100%; }
+}
+
+/* Wrapfigure fragments from converted TeX */
+#modul-content .wrapfigure { max-width: 100%; }
+#modul-content .wrapfigure img { max-width: 100%; height: auto; display: block; }
 
 /* WhatsApp modal (reuse kontak styles) */
 .wa-modal-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); z-index: 1200 }
@@ -2084,7 +2218,7 @@ body.dark .modal-dialog {
 
 .assessment-form {
     background-color: var(--bg-secondary);
-    border: 2px solid var(--text-primary);
+    border: 2px solid var(--accent-primary);
     border-radius: var(--radius-lg);
     padding: 30px;
     margin-bottom: 30px;
@@ -2148,7 +2282,16 @@ body.dark .modal-dialog {
 .assessment-scoring-grid .form-group {
     margin-bottom: 0;
 }
+#helper-text {
+  color: var(--text-secondary);          /* softer gray */
+  font-size: 0.875rem;  /* slightly smaller than normal text */
+  opacity: 1;           /* make it fully visible */
+  margin-top: 4px;      /* spacing from input above */
+}
 
+body.dark #helper-text {
+    color: var(--text-secondary-dark);
+}
 body.dark .assessment-avatar {
     border-color: var(--accent-primary-dark);
     background: var(--bg-secondary-dark);
@@ -2254,7 +2397,7 @@ body.dark .history-table td {
 /* Export buttons styling (penilaian.html) */
 .history-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
 .export-btn {
-    background: var(--text-color);
+    background: var(--text-primary-dark);
     color: var(--primary-gold);
     border: 2px solid var(--primary-gold);
     padding: 10px 18px;
@@ -3156,29 +3299,47 @@ body.dark .admin-reminder-deadline { background: var(--bg-secondary-dark); }
 /* Module viewer 3-column layout */
 .module-viewer-grid {
     display: grid;
-    grid-template-columns: 20% 1fr 20%;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) minmax(220px, 280px);
     gap: 20px;
     align-items: start;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    min-width: 0;
 }
 .viewer-col { background: var(--card-bg); padding: 16px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(226, 232, 240, 0.8); /* Warna border abu-abu sangat muda */
-    border-radius: 12px;}
-.toc-col, .assistants-col { position: sticky; top: 90px; height: auto; overflow: visible; }
-.content-col { min-height: 90vh; }
-.assistant-card { display:flex; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-color); }
-.assistant-photo { width:48px; height:48px; border-radius:8px; object-fit:cover; }
-.assistant-name { font-weight:600; }
+    border-radius: 12px;
+    min-width: 0;
+}
+.toc-col, .assistants-col {
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+}
+.content-col { min-height: 90vh; min-width: 0; }
+#modul-content { min-width: 0; }
 
 /* TOC styles */
 #toc-list ul { list-style: none; padding-left: 0; }
 #toc-list li.h2 { font-weight:700; margin:8px 0; }
-#toc-list li.h3 { margin-left:12px; color:var(--text-primary); }
-#toc-list a { text-decoration:none; color:inherit; }
+#toc-list li.h3 { margin-left:12px; font-weight:200; }
+#toc-list a { text-decoration:none; color:inherit; display:block; padding: 6px 8px; border-radius: 10px; }
+#toc-list a:hover { background: rgba(59,130,246,0.08); }
+body.dark #toc-list a:hover { background: rgba(59,130,246,0.16); }
 
 /* LaTeX content tweaks */
-.content-col table { width:100%; border-collapse:collapse; margin:12px 0; }
+.content-col table {
+        width: 100%;
+    max-width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    table-layout: fixed;
+}
 .content-col table th, .content-col table td { border:1px solid var(--border-color); padding:8px; }
+.content-col table th, .content-col table td { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .content-col blockquote { border-left:3px solid var(--accent-primary); padding:8px 12px; background: rgba(59,130,246,0.04); }
 .content-col pre, .content-col code { background: rgba(0,0,0,0.04); padding:8px; border-radius:6px; overflow:auto; }
 
@@ -3186,6 +3347,27 @@ body.dark .admin-reminder-deadline { background: var(--bg-secondary-dark); }
 @media (max-width: 900px) {
   .module-viewer-grid { grid-template-columns: 1fr; }
   .toc-col, .assistants-col { position: static; height: auto; }
-  .toc-col, .assistants-col { display: none; }
+        .toc-col, .assistants-col { display: block; max-height: 44vh; overflow: auto; }
+}
+
+@media (max-width: 640px) {
+        .module-viewer-grid { gap: 12px; }
+        .viewer-col { padding: 12px; }
+        .module-footer { flex-wrap: wrap; }
+        .module-footer .btn, .module-footer .back-btn { flex: 1 1 220px; }
+        .module-footer .back-btn { margin-bottom: 0; }
+
+    /* tighter tables on small screens */
+    .content-col table { font-size: 0.92rem; }
+    .content-col table th, .content-col table td { padding: 6px; }
+}
+
+@media (max-width: 420px) {
+    .page-container { padding: 0 10px; }
+    .viewer-col { padding: 10px; }
+    #modul-content ul, #modul-content ol { padding-left: 1.25rem; }
+
+    /* If inline math is wider than the screen, allow scroll instead of overflow */
+    #modul-content mjx-container { max-width: 100%; overflow-x: auto; }
 }
 

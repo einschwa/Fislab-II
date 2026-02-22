@@ -79,7 +79,7 @@
                 return j && Array.isArray(j.aslab) && j.aslab.includes(String(assistantNrp));
             });
             kelompokSelect.innerHTML = '<option value="">Pilih Kelompok</option>' +
-                matchingKelompok.map(kId => `<option value="${kId}">${kId} - ${(allData.kelompok[kId].namaKelompok || kId)}</option>`).join('');
+                matchingKelompok.map(kId => `<option value="${kId}">${kId}</option>`).join('');
             praktikanSelect.innerHTML = '<option value="">Pilih Praktikan</option>';
             helper.textContent = matchingKelompok.length ? `Modul: ${modulId}. Anda mengampu ${matchingKelompok.length} kelompok.` : 'Tidak ada kelompok untuk modul Anda.';
 
