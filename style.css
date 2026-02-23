@@ -1749,6 +1749,10 @@ body.dark #modul-content, body.dark .module-viewer-grid, body.dark .viewer-col, 
     overflow-wrap: anywhere;
     word-break: break-word;
 }
+#modul-content p {
+    text-align: justify;
+    text-justify: inter-word;
+}
 #modul-content a { hyphens: auto; }
 
 /* MathJax (SVG output): keep display equations within viewport */
