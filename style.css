@@ -1752,6 +1752,10 @@ body.dark #modul-content, body.dark .module-viewer-grid, body.dark .viewer-col, 
 #modul-content p {
     text-align: justify;
     text-justify: inter-word;
+    text-indent: 2em;
+}
+#modul-content li p {
+    text-indent: 0;
 }
 #modul-content a { hyphens: auto; }
 
