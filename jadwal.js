@@ -19,7 +19,7 @@
     function rawWeek(j){ return (j && typeof j.week === 'number') ? j.week : 0; }
     function displayWeek(j){
         const w = rawWeek(j);
-        if (w >= 2 && w <= 6) return w + 1 + gWeekOffset; // geser khusus minggu 2-6
+         // geser khusus minggu 2-6 (untuk pengubahan bisa disini)
         return w + gWeekOffset; // minggu lain tidak berubah
     }
         
