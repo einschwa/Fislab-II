@@ -1,0 +1,40 @@
+# Security - Don't commit sensitive credentials
+firebase-config.js
+.env
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Optional: Uncomment if you want to ignore generated HTML
+# public/modul-html/*.html
