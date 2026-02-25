@@ -1,12 +1,46 @@
     const database = firebase.database();
-        const SESSIONS = [
+        
+        // Sesi default untuk semua minggu kecuali week 3 dan 4
+        const DEFAULT_SESSIONS = [
+            { id: 1, start: '07:00', end: '09:00' },
+            { id: 2, start: '09:00', end: '11:00' },
+            { id: 3, start: '11:00', end: '13:00' },
+            { id: 4, start: '13:30', end: '15:30' },
+            { id: 5, start: '15:30', end: '17:30' },
+            { id: 6, start: '18:00', end: '20:00' }
+        ];
+        
+        // Sesi khusus untuk week 3 dan week 4
+        const WEEK3_4_SESSIONS = [
             { id: 1, start: '07:30', end: '08:50' },
             { id: 2, start: '09:00', end: '10:20' },
-            { id: 3, start: '13:00', end: '14:20' },
-            { id: 4, start: '14:30', end: '15:50' },
-            { id: 5, start: '15:50', end: '17:10' },
-            // { id: 6, start: '18:00', end: '20:00' }
+            { id: 4, start: '13:00', end: '14:20' },
+            { id: 5, start: '14:30', end: '15:50' },
+            { id: 3, start: '10:30', end: '11:50' },
+            { id: 6, start: '15:50', end: '17:10' }
         ];
+        
+        // Fungsi untuk mendapatkan sesi yang sesuai berdasarkan week dari database
+        function getSessionsForWeek(weekNumber) {
+            if (weekNumber === 3 || weekNumber === 4) {
+                return WEEK3_4_SESSIONS;
+            }
+            return DEFAULT_SESSIONS;
+        }
+        
+        // Fungsi untuk mendapatkan week asli dari data (sama seperti jadwal.js)
+        function rawWeek(j) { 
+            return (j && typeof j.week === 'number') ? j.week : 0; 
+        }
+        
+        // Fungsi untuk menampilkan week dengan offset khusus (sama seperti jadwal.js)
+        function displayWeek(j) {
+            const w = rawWeek(j);
+            if (w >= 3 && w <= 4) 
+                return w - 1; // geser khusus minggu 3-4
+            return w; // minggu lain tidak berubah
+        }
+        
         let __ALL_DATA__ = null;
 
         // Sidebar visibility handled by sidebar.js
@@ -28,9 +62,14 @@
                         
                         const card = document.createElement('div');
                         card.className = 'scheduling-card';
+                        
+                        // Dapatkan sesi berdasarkan week dari database
+                        const weekNumber = jadwal.week || null;
+                        const currentSessions = getSessionsForWeek(weekNumber);
+                        
                         const selectedSessionId = (function(){
                             if (jadwal['jam-awal'] && jadwal['jam-akhir']) {
-                                const match = SESSIONS.find(s => s.start === jadwal['jam-awal'] && s.end === jadwal['jam-akhir']);
+                                const match = currentSessions.find(s => s.start === jadwal['jam-awal'] && s.end === jadwal['jam-akhir']);
                                 return match ? match.id : '';
                             }
                             return '';
@@ -40,6 +79,7 @@
                             <div class="scheduling-header">
                                 <h3>${modulId}: ${modulNama}</h3>
                                 <p>${kelompokNama}</p>
+                                <p style="font-size:0.9rem; color:#666; margin-top:0.25rem;">Minggu ke-${displayWeek(jadwal)}</p>
                             </div>
                             <div class="form-group">
                                 <label for="jam-awal-${kelompokId}-${modulId}">Jam Awal</label>
@@ -57,10 +97,11 @@
                                 <label for="sesi-${kelompokId}-${modulId}">Sesi (2 jam)</label>
                                 <select id="sesi-${kelompokId}-${modulId}">
                                     <option value="">Pilih sesi</option>
-                                    ${SESSIONS.map(s => `<option value="${s.id}" ${String(selectedSessionId)===String(s.id)?'selected':''}>Sesi ${s.id} (${s.start} - ${s.end})</option>`).join('')}
+                                    ${currentSessions.map(s => `<option value="${s.id}" ${String(selectedSessionId)===String(s.id)?'selected':''}>Sesi ${s.id} (${s.start} - ${s.end})</option>`).join('')}
                                 </select>
                             </div>
                             <div class="form-group">
+                                <div id="week-info-${kelompokId}-${modulId}" style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;"></div>
                                 <div id="sesi-status-${kelompokId}-${modulId}" style="font-size:0.9rem;"></div>
                                 <div id="sesi-tersedia-${kelompokId}-${modulId}" style="font-size:0.9rem; opacity:0.85;"></div>
                             </div>
@@ -75,6 +116,7 @@
                         const jamAkhirEl = document.getElementById(`jam-akhir-${kelompokId}-${modulId}`);
                         const statusEl = document.getElementById(`sesi-status-${kelompokId}-${modulId}`);
                         const tersediaEl = document.getElementById(`sesi-tersedia-${kelompokId}-${modulId}`);
+                        const weekInfoEl = document.getElementById(`week-info-${kelompokId}-${modulId}`);
 
                         function countBookingsFor(tanggal, sessionObj, excludeKey){
                             if (!tanggal || !sessionObj) return 0;
@@ -114,24 +156,58 @@
                             return false;
                         }
 
+                        function updateWeekInfo() {
+                            if (!weekNumber) {
+                                weekInfoEl.textContent = '';
+                                return;
+                            }
+                            if (weekNumber === 3 || weekNumber === 4) {
+                                weekInfoEl.textContent = `📅 Week ${weekNumber} - Menggunakan sesi khusus (6 sesi tersedia)`;
+                                weekInfoEl.style.color = '#0066cc';
+                            } else {
+                                weekInfoEl.textContent = `📅 Week ${weekNumber} - Menggunakan sesi standar (6 sesi tersedia)`;
+                                weekInfoEl.style.color = '#666';
+                            }
+                        }
+                        
                         function listAvailableSessions(tanggal, excludeKey){
                             if (!tanggal){
                                 tersediaEl.textContent = 'Pilih tanggal untuk melihat sesi yang tersedia.';
                                 return;
                             }
-                            const avail = SESSIONS.map(s => ({
+                            const sessionsForDate = getSessionsForWeek(weekNumber);
+                            const avail = sessionsForDate.map(s => ({
                                 s,
                                 sameModul: isSessionTakenBySameModule(tanggal, s, modulId, excludeKey),
                                 used: countBookingsFor(tanggal, s, excludeKey)
                             }))
-                                .filter(x => !x.sameModul && x.used < 3)
-                                .map(x => `Sesi ${x.s.id} (${x.s.start}-${x.s.end}) tersisa ${3 - x.used}`);
+                                .filter(x => !x.sameModul && x.used < 4)
+                                .map(x => `Sesi ${x.s.id} (${x.s.start}-${x.s.end}) tersisa ${4 - x.used}`);
                             tersediaEl.textContent = avail.length ? ('Sesi tersedia: ' + avail.join(', ')) : 'Semua sesi penuh atau modul ini sudah ada di sesi lain pada tanggal ini.';
                         }
 
                         function updateSessionBinding(){
+                            const tanggal = tanggalInput.value;
+                            
+                            // Update info minggu
+                            updateWeekInfo();
+                            
+                            // Dapatkan sesi yang sesuai berdasarkan week dari database
+                            const sessionsForDate = getSessionsForWeek(weekNumber);
+                            
+                            // Update dropdown sesi
+                            const currentSesiValue = sesiSelect.value;
+                            sesiSelect.innerHTML = '<option value="">Pilih sesi</option>' + 
+                                sessionsForDate.map(s => `<option value="${s.id}">Sesi ${s.id} (${s.start} - ${s.end})</option>`).join('');
+                            
+                            // Restore nilai jika masih valid
+                            if (currentSesiValue && sessionsForDate.find(s => String(s.id) === currentSesiValue)) {
+                                sesiSelect.value = currentSesiValue;
+                            }
+                            
                             const sesiId = sesiSelect.value ? parseInt(sesiSelect.value, 10) : null;
-                            const sesiObj = sesiId ? SESSIONS.find(s => s.id === sesiId) : null;
+                            const sesiObj = sesiId ? sessionsForDate.find(s => s.id === sesiId) : null;
+                            
                             if (sesiObj){
                                 jamAwalEl.value = sesiObj.start;
                                 jamAkhirEl.value = sesiObj.end;
@@ -139,7 +215,7 @@
                                 jamAwalEl.value = '';
                                 jamAkhirEl.value = '';
                             }
-                            const tanggal = tanggalInput.value;
+                            
                             const excludeKey = `${kelompokId}/${modulId}`;
                             if (tanggal && sesiObj){
                                 const sameModulTaken = isSessionTakenBySameModule(tanggal, sesiObj, modulId, excludeKey);
@@ -147,7 +223,7 @@
                                     statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tidak tersedia: ${modulId} sudah dijadwalkan di sesi ini pada tanggal ${tanggal} oleh kelompok lain.`;
                                 } else {
                                     const used = countBookingsFor(tanggal, sesiObj, excludeKey);
-                                    const remaining = 3 - used;
+                                    const remaining = 4 - used;
                                     if (remaining <= 0){
                                         statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) penuh untuk tanggal ${tanggal}.`;
                                     } else {
@@ -198,7 +274,17 @@
                 }
 
                 const scheduleRef = database.ref(`kelompok/${kelompok}/${modul}`);
-                const sesiObj = SESSIONS.find(s => String(s.id) === String(sesiIdStr));
+                
+                // Ambil week dari database
+                const weekFromDb = __ALL_DATA__.kelompok[kelompok][modul].week || null;
+                const sessionsForDate = getSessionsForWeek(weekFromDb);
+                const sesiObj = sessionsForDate.find(s => String(s.id) === String(sesiIdStr));
+                
+                if (!sesiObj) {
+                    alert('Sesi tidak valid untuk tanggal yang dipilih.');
+                    return;
+                }
+                
                 const excludeKey = `${kelompok}/${modul}`;
                 // Cek: modul yang sama (e.g. MP1) tidak boleh di sesi yang sama pada hari yang sama
                 let sameModulInSession = false;
@@ -235,8 +321,8 @@
                         }
                     }
                 }
-                if (used >= 3){
-                    alert(`Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} sudah penuh. Pilih sesi lain.`);
+                if (used >= 4){
+                    alert(`Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} sudah penuh. Pilih sesi lain.`);}
                     return;
                 }
 
