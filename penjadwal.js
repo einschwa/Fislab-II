@@ -305,7 +305,7 @@
                     alert(`${modul} sudah dijadwalkan di Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} oleh kelompok lain. Satu modul hanya boleh satu kali per sesi per hari.`);
                     return;
                 }
-                // Cek kuota sesi (maks 3) untuk tanggal+sesi
+                // Cek kuota sesi (maks 4) untuk tanggal+sesi
                 let used = 0;
                 for (const kId in __ALL_DATA__.kelompok){
                     const kg = __ALL_DATA__.kelompok[kId];
@@ -322,7 +322,7 @@
                     }
                 }
                 if (used >= 4){
-                    alert(`Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} sudah penuh. Pilih sesi lain.`);}
+                    alert(`Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} sudah penuh. Pilih sesi lain.`);
                     return;
                 }
 
