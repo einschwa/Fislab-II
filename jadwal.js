@@ -123,7 +123,7 @@
                 const k = gAllData.kelompok[kid];
                 if (!k) continue;
                 for (const key of Object.keys(k)) {
-                    if (!key.startsWith('E')) continue;
+                    if (!key.startsWith('W') && !key.startsWith('MP')) continue;
                     const jadwal = k[key] || {};
                     const d = parseDateFlexible(jadwal['tanggal']);
                     if (!d || d.getMonth() !== month || d.getFullYear() !== year) continue;
