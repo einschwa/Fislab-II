@@ -143,7 +143,7 @@
 
 .contact-header { display: flex; align-items: center; gap: 8px; }
 .contact-info h3 { margin: 0; font-size: 1rem; }
-.contact-info .contact-role { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+.contact-info .contact-role { margin: 0; font-size: 0.85rem; }
 
 @media (min-width: 1024px) {
     .profile-avatar { width: 120px; height: 120px; }
@@ -1636,6 +1636,10 @@ body.dark .cancel-btn:hover { background: rgba(239, 68, 68, 0.1); border-color: 
     margin: 0;
     font-size: 0.9rem;
     opacity: 0.8;
+    color: var(--text-secondary);
+}
+body.dark .contact-role {
+    color: var(--text-secondary-dark);
 }
 
 .contact-details {
@@ -1661,7 +1665,7 @@ body.dark .cancel-btn:hover { background: rgba(239, 68, 68, 0.1); border-color: 
 
 .module-list {
     margin-top: auto;
-    background: rgba(207, 163, 48, 0.1);
+    background: rgba(48, 173, 207, 0.05);
     padding: 16px;
     border-radius: 8px;
     border-left: 4px solid var(--primary-gold);
