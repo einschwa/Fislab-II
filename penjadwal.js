@@ -10,20 +10,42 @@
             { id: 6, start: '18:00', end: '20:00' }
         ];
         
-        // Sesi khusus untuk week 3 dan week 4
-        const WEEK3_4_SESSIONS = [
+        // Sesi khusus week 3 & 4 untuk Senin-Kamis, Sabtu, Minggu
+        const WEEK3_4_SESSIONS_REGULAR = [
             { id: 1, start: '07:30', end: '08:50' },
             { id: 2, start: '09:00', end: '10:20' },
+            { id: 3, start: '10:30', end: '11:50' },
+            { id: 4, start: '12:30', end: '13:50' },
+            { id: 5, start: '14:00', end: '15:20' },
+            { id: 6, start: '15:20', end: '16:40' }
+        ];
+
+        // Sesi khusus week 3 & 4 untuk Jumat
+        const WEEK3_4_SESSIONS_FRIDAY = [
+            { id: 1, start: '07:30', end: '08:50' },
+            { id: 2, start: '09:00', end: '10:20' },
+            { id: 3, start: '10:30', end: '11:50' },
             { id: 4, start: '13:00', end: '14:20' },
             { id: 5, start: '14:30', end: '15:50' },
-            { id: 3, start: '10:30', end: '11:50' },
             { id: 6, start: '15:50', end: '17:10' }
         ];
+
+        function isFridayDate(dateStr) {
+            if (!dateStr) return false;
+            const parts = String(dateStr).split('-');
+            if (parts.length !== 3) return false;
+            const year = Number(parts[0]);
+            const month = Number(parts[1]);
+            const day = Number(parts[2]);
+            if (!year || !month || !day) return false;
+            const dateObj = new Date(year, month - 1, day);
+            return dateObj.getDay() === 5;
+        }
         
-        // Fungsi untuk mendapatkan sesi yang sesuai berdasarkan week dari database
-        function getSessionsForWeek(weekNumber) {
+        // Fungsi untuk mendapatkan sesi yang sesuai berdasarkan week + tanggal
+        function getSessionsForWeek(weekNumber, dateStr = '') {
             if (weekNumber === 3 || weekNumber === 4) {
-                return WEEK3_4_SESSIONS;
+                return isFridayDate(dateStr) ? WEEK3_4_SESSIONS_FRIDAY : WEEK3_4_SESSIONS_REGULAR;
             }
             return DEFAULT_SESSIONS;
         }
@@ -65,7 +87,8 @@
                         
                         // Dapatkan sesi berdasarkan week dari database
                         const weekNumber = jadwal.week || null;
-                        const currentSessions = getSessionsForWeek(weekNumber);
+                        const initialDate = (jadwal['tanggal'] && jadwal['tanggal'] !== 0) ? jadwal['tanggal'] : '';
+                        const currentSessions = getSessionsForWeek(weekNumber, initialDate);
                         
                         const selectedSessionId = (function(){
                             if (jadwal['jam-awal'] && jadwal['jam-akhir']) {
@@ -156,13 +179,16 @@
                             return false;
                         }
 
-                        function updateWeekInfo() {
+                        function updateWeekInfo(tanggal) {
                             if (!weekNumber) {
                                 weekInfoEl.textContent = '';
                                 return;
                             }
                             if (weekNumber === 3 || weekNumber === 4) {
-                                weekInfoEl.textContent = `📅 Week ${weekNumber} - Menggunakan sesi khusus (6 sesi tersedia)`;
+                                const isFriday = isFridayDate(tanggal);
+                                weekInfoEl.textContent = isFriday
+                                    ? `📅 Week ${weekNumber} - Mode Jumat (6 sesi khusus)`
+                                    : `📅 Week ${weekNumber} - Mode Senin-Kamis/Sabtu/Minggu (6 sesi khusus)`;
                                 weekInfoEl.style.color = '#0066cc';
                             } else {
                                 weekInfoEl.textContent = `📅 Week ${weekNumber} - Menggunakan sesi standar (6 sesi tersedia)`;
@@ -175,7 +201,7 @@
                                 tersediaEl.textContent = 'Pilih tanggal untuk melihat sesi yang tersedia.';
                                 return;
                             }
-                            const sessionsForDate = getSessionsForWeek(weekNumber);
+                            const sessionsForDate = getSessionsForWeek(weekNumber, tanggal);
                             const avail = sessionsForDate.map(s => ({
                                 s,
                                 sameModul: isSessionTakenBySameModule(tanggal, s, modulId, excludeKey),
@@ -190,10 +216,10 @@
                             const tanggal = tanggalInput.value;
                             
                             // Update info minggu
-                            updateWeekInfo();
+                            updateWeekInfo(tanggal);
                             
                             // Dapatkan sesi yang sesuai berdasarkan week dari database
-                            const sessionsForDate = getSessionsForWeek(weekNumber);
+                            const sessionsForDate = getSessionsForWeek(weekNumber, tanggal);
                             
                             // Update dropdown sesi
                             const currentSesiValue = sesiSelect.value;
@@ -277,7 +303,7 @@
                 
                 // Ambil week dari database
                 const weekFromDb = __ALL_DATA__.kelompok[kelompok][modul].week || null;
-                const sessionsForDate = getSessionsForWeek(weekFromDb);
+                const sessionsForDate = getSessionsForWeek(weekFromDb, tanggal);
                 const sesiObj = sessionsForDate.find(s => String(s.id) === String(sesiIdStr));
                 
                 if (!sesiObj) {
