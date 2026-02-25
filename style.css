@@ -1456,10 +1456,10 @@ body.dark .schedule-card {
 .calendar-day {
     position: relative;
     min-height: 72px;
-    border: 1px solid rgba(207,163,48,0.25);
+    border: 1px solid var(--accent-hover-dark);
     border-radius: 8px;
     padding: 8px;
-    background: rgba(207,163,48,0.06);
+    background: rgba(48, 173, 207, 0.05);
     color: currentColor;
     cursor: default;
 }
