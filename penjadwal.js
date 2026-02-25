@@ -1,11 +1,11 @@
     const database = firebase.database();
         const SESSIONS = [
-            { id: 1, start: '07:00', end: '09:00' },
-            { id: 2, start: '09:00', end: '11:00' },
-            { id: 3, start: '11:00', end: '13:00' },
-            { id: 4, start: '13:30', end: '15:30' },
-            { id: 5, start: '15:30', end: '17:30' },
-            { id: 6, start: '18:00', end: '20:00' }
+            { id: 1, start: '07:30', end: '08:50' },
+            { id: 2, start: '09:00', end: '10:20' },
+            { id: 3, start: '13:00', end: '14:20' },
+            { id: 4, start: '14:30', end: '15:50' },
+            { id: 5, start: '15:50', end: '17:10' },
+            // { id: 6, start: '18:00', end: '20:00' }
         ];
         let __ALL_DATA__ = null;
 
