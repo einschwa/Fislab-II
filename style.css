@@ -2828,6 +2828,130 @@ body.dark .wa-modal { background: #2a2a2a; color: #ffffff; box-shadow: 0 18px 50
 #wa-modal-close:hover { background: rgba(207,163,48,0.18); transform: rotate(12deg); }
 body.dark #wa-modal-close:hover { background: rgba(255,255,255,0.15); }
 
+/* WhatsApp Modal Assistant Info */
+.wa-assistant-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(207,163,48,0.08);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+body.dark .wa-assistant-info { background: rgba(255,255,255,0.08); }
+
+.wa-assistant-avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #e2e8f0;
+    color: #0f172a;
+    flex-shrink: 0;
+}
+body.dark .wa-assistant-avatar { background: #3a3a3a; color: #ffffff; }
+
+.wa-assistant-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+.wa-assistant-avatar .avatar-initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.wa-assistant-avatar.has-photo .avatar-initials { display: none; }
+.wa-assistant-avatar:not(.has-photo) img { display: none; }
+
+.wa-assistant-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.wa-assistant-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-gold);
+    margin-bottom: 4px;
+    font-weight: 500;
+    opacity: 0.85;
+}
+body.dark .wa-assistant-label { color: rgba(255,255,255,0.7); }
+
+.wa-assistant-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: currentColor;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wa-personal-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+body.dark .wa-personal-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+
+.wa-personal-title {
+    font-weight: 600;
+    letter-spacing: .2px;
+    color: var(--primary-gold);
+    font-size: 0.95rem;
+}
+body.dark .wa-personal-title { color: rgba(255,255,255,0.82); }
+
+.wa-personal-list { display: grid; gap: 8px; }
+.wa-personal-row { display: flex; justify-content: space-between; gap: 10px; font-size: 0.92rem; }
+.wa-personal-key { color: rgba(0,0,0,0.65); font-weight: 500; }
+body.dark .wa-personal-key { color: rgba(255,255,255,0.7); }
+.wa-personal-value { color: currentColor; font-weight: 600; text-align: right; word-break: break-word; }
+
+.wa-modal-layout { display: flex; flex-direction: column; gap: 16px; }
+.wa-modal-col { width: 100%; }
+.wa-modal-right form { height: 100%; display: flex; flex-direction: column; }
+.wa-modal-right .wa-actions { margin-top: auto; }
+
+/* Desktop/PC: avatar di kiri, konten landscape */
+@media (min-width: 640px) {
+    .wa-assistant-info {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+    .wa-assistant-avatar {
+        width: 88px;
+        height: 88px;
+    }
+    .wa-assistant-avatar .avatar-initials { font-size: 24px; }
+}
+
+@media (min-width: 900px) {
+    .wa-modal { max-width: 920px; padding: 26px 30px 32px; }
+    .wa-modal-layout { flex-direction: row; align-items: flex-start; gap: 20px; }
+    .wa-modal-left { max-width: 360px; }
+    .wa-modal-right { flex: 1; }
+}
+
 .wa-modal-body .form-group { margin-bottom: 16px; }
 .wa-modal-body textarea { min-height: 120px; resize: vertical; }
 .wa-actions { margin-top: 10px; }
