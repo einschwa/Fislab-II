@@ -80,7 +80,7 @@
 
                 // Buat Kartu Kontak
                 const cardHTML = `
-                    <div class="contact-card" data-nrp="${asisten.nrp}" data-nama="${asisten.nama}" data-telepon="${asisten.telepon || ''}">
+                    <div class="contact-card" data-nrp="${asisten.nrp}" data-nama="${asisten.nama}" data-telepon="${asisten.telepon || ''}" data-email="${asisten.email || ''}">
                         <div class="contact-header">
                             <div class="contact-avatar" aria-hidden="true">
                                 ${photo ? `<img src="${photo}" alt="Foto ${asisten.nama}" onload="this.parentElement.classList.add('has-photo')" onerror="this.style.display='none'; this.parentElement.classList.remove('has-photo')">` : ''}
@@ -114,11 +114,48 @@
             // Event listener untuk setiap kartu
             contactGrid.querySelectorAll('.contact-card').forEach(card => {
                 card.addEventListener('click', () => {
-                    const { nrp, telepon, nama } = card.dataset;
+                    const { nrp, telepon, nama, email } = card.dataset;
                     if (!telepon) { alert('Nomor telepon tidak tersedia.'); return; }
-                    activeAssistant = { nrp, telepon, nama };
-                    // Prefill modal
-                    document.getElementById('wa-asisten').value = nama;
+                    
+                    // Ambil foto profil asisten dari kartu yang diklik
+                    const avatarElement = card.querySelector('.contact-avatar');
+                    const photoImg = avatarElement.querySelector('img');
+                    const initialsElement = avatarElement.querySelector('.avatar-initials');
+                    const photoURL = photoImg ? photoImg.src : null;
+                    const initials = initialsElement ? initialsElement.textContent : '';
+                    
+                    activeAssistant = { nrp, telepon, nama, email, photoURL, initials };
+                    
+                    // Tampilkan foto/inisial di modal
+                    const modalAvatar = document.getElementById('wa-assistant-avatar');
+                    const modalAvatarImg = document.getElementById('wa-avatar-img');
+                    const modalInitials = document.getElementById('wa-avatar-initials');
+                    const modalNama = document.getElementById('wa-asisten-display');
+                    const detailNama = document.getElementById('wa-detail-nama');
+                    const detailNrp = document.getElementById('wa-detail-nrp');
+                    const detailHp = document.getElementById('wa-detail-hp');
+                    const detailEmail = document.getElementById('wa-detail-email');
+                    
+                    modalNama.textContent = nama;
+                    modalInitials.textContent = initials;
+                    detailNama.textContent = nama || '-';
+                    detailNrp.textContent = nrp || '-';
+                    detailHp.textContent = telepon || '-';
+                    detailEmail.textContent = email || '-';
+                    
+                    if (photoURL && !photoURL.includes('onerror')) {
+                        modalAvatarImg.src = photoURL;
+                        modalAvatarImg.style.display = 'block';
+                        modalAvatarImg.onload = () => modalAvatar.classList.add('has-photo');
+                        modalAvatarImg.onerror = () => {
+                            modalAvatarImg.style.display = 'none';
+                            modalAvatar.classList.remove('has-photo');
+                        };
+                    } else {
+                        modalAvatarImg.style.display = 'none';
+                        modalAvatar.classList.remove('has-photo');
+                    }
+                    
                     // Jika user data sudah diambil sebelumnya, isi nama / nrp
                     const uNama = localStorage.getItem('fislab-user-nama') || '';
                     const uNrp = localStorage.getItem('fislab-nrp') || '';
