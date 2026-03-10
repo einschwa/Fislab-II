@@ -115,11 +115,12 @@
             const res = {};
             if (!gAllData || !gAllData.kelompok) return res;
             const role = (gRole || '').toLowerCase();
-            const forAll = role === 'asisten laboratorium';
+            const forAll = role === 'asisten laboratorium' || role === 'praktikan';
             const targets = forAll
                 ? Object.keys(gAllData.kelompok)
                 : (gUserData && gUserData.kelompokId ? [gUserData.kelompokId] : []);
-            for (const kid of targets) {
+            for (const kidRaw of targets) {
+                const kid = kidRaw ? kidRaw.toLowerCase() : '';
                 const k = gAllData.kelompok[kid];
                 if (!k) continue;
                 for (const key of Object.keys(k)) {
