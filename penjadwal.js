@@ -30,6 +30,9 @@
             { id: 6, start: '15:50', end: '17:10' }
         ];
 
+        // Aturan khusus: W2 (Determinasi Sudut Brewster) dan MP1 (Konstanta Planck) tidak boleh berada pada satu sesi yang sama
+        const CONFLICTING_PAIRS = [ ['W2', 'MP1'] ];
+
         function isFridayDate(dateStr) {
             if (!dateStr) return false;
             const parts = String(dateStr).split('-');
@@ -64,6 +67,31 @@
         }
         
         let __ALL_DATA__ = null;
+
+        // Deteksi pasangan modul yang dilarang berada pada sesi yang sama (W2 vs MP1)
+        function isConflictPair(modulA, modulB){
+            if (!modulA || !modulB || modulA === modulB) return false;
+            return CONFLICTING_PAIRS.some(([a, b]) => (a === modulA && b === modulB) || (a === modulB && b === modulA));
+        }
+
+        function findConflictingModuleBooking(tanggal, sessionObj, modulId, excludeKey){
+            if (!tanggal || !sessionObj || !modulId || !__ALL_DATA__ || !__ALL_DATA__.kelompok) return null;
+            for (const kId in __ALL_DATA__.kelompok){
+                const kg = __ALL_DATA__.kelompok[kId];
+                for (const mId in kg){
+                    if (!isConflictPair(modulId, mId)) continue;
+                    const j = kg[mId];
+                    const key = `${kId}/${mId}`;
+                    if (excludeKey && key === excludeKey) continue;
+                    if (j['tanggal'] && j['tanggal'] !== 0 && j['jam-awal'] && j['jam-akhir']){
+                        if (j['tanggal'] === tanggal && j['jam-awal'] === sessionObj.start && j['jam-akhir'] === sessionObj.end){
+                            return mId;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         // Sidebar visibility handled by sidebar.js
         
@@ -179,6 +207,7 @@
                             return false;
                         }
 
+
                         function updateWeekInfo(tanggal) {
                             if (!weekNumber) {
                                 weekInfoEl.textContent = '';
@@ -205,11 +234,12 @@
                             const avail = sessionsForDate.map(s => ({
                                 s,
                                 sameModul: isSessionTakenBySameModule(tanggal, s, modulId, excludeKey),
-                                used: countBookingsFor(tanggal, s, excludeKey)
+                                used: countBookingsFor(tanggal, s, excludeKey),
+                                conflictWith: findConflictingModuleBooking(tanggal, s, modulId, excludeKey)
                             }))
-                                .filter(x => !x.sameModul && x.used < 4)
+                                .filter(x => !x.sameModul && !x.conflictWith && x.used < 4)
                                 .map(x => `Sesi ${x.s.id} (${x.s.start}-${x.s.end}) tersisa ${4 - x.used}`);
-                            tersediaEl.textContent = avail.length ? ('Sesi tersedia: ' + avail.join(', ')) : 'Semua sesi penuh atau modul ini sudah ada di sesi lain pada tanggal ini.';
+                            tersediaEl.textContent = avail.length ? ('Sesi tersedia: ' + avail.join(', ')) : 'Semua sesi penuh atau diblokir (W2 dan MP1 tidak boleh satu sesi).';
                         }
 
                         function updateSessionBinding(){
@@ -248,12 +278,17 @@
                                 if (sameModulTaken){
                                     statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tidak tersedia: ${modulId} sudah dijadwalkan di sesi ini pada tanggal ${tanggal} oleh kelompok lain.`;
                                 } else {
-                                    const used = countBookingsFor(tanggal, sesiObj, excludeKey);
-                                    const remaining = 4 - used;
-                                    if (remaining <= 0){
-                                        statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) penuh untuk tanggal ${tanggal}.`;
+                                    const conflictModul = findConflictingModuleBooking(tanggal, sesiObj, modulId, excludeKey);
+                                    if (conflictModul){
+                                        statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tidak tersedia: bentrok dengan ${conflictModul} pada tanggal ${tanggal} (W2 dan MP1 tidak boleh satu sesi).`;
                                     } else {
-                                        statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tersedia: sisa ${remaining} untuk tanggal ${tanggal}.`;
+                                        const used = countBookingsFor(tanggal, sesiObj, excludeKey);
+                                        const remaining = 4 - used;
+                                        if (remaining <= 0){
+                                            statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) penuh untuk tanggal ${tanggal}.`;
+                                        } else {
+                                            statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tersedia: sisa ${remaining} untuk tanggal ${tanggal}.`;
+                                        }
                                     }
                                 }
                             } else {
@@ -329,6 +364,13 @@
                 }
                 if (sameModulInSession){
                     alert(`${modul} sudah dijadwalkan di Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} oleh kelompok lain. Satu modul hanya boleh satu kali per sesi per hari.`);
+                    return;
+                }
+
+                // Cek: W2 dan MP1 tidak boleh berada pada satu sesi yang sama
+                const conflictModul = findConflictingModuleBooking(tanggal, sesiObj, modul, excludeKey);
+                if (conflictModul){
+                    alert(`Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) pada tanggal ${tanggal} tidak tersedia karena bentrok dengan ${conflictModul}. W2 dan MP1 tidak boleh berada pada sesi yang sama.`);
                     return;
                 }
                 // Cek kuota sesi (maks 4) untuk tanggal+sesi
