@@ -258,7 +258,18 @@
         // Upload avatar to Supabase and update Firebase with the public URL
         async function uploadAvatar(file, nrp) {
             await ensureSupabaseReady().catch(err => { throw err; });
-            const ext = (file.name && file.name.split('.').pop()) || (file.type && file.type.split('/').pop()) || 'png';
+            let ext = (file.name && file.name.split('.').pop()) || (file.type && file.type.split('/').pop()) || 'png';
+            
+            // Convert HEIC/HEIF to JPEG for browser compatibility
+            if (ext.toLowerCase() === 'heic' || ext.toLowerCase() === 'heif') {
+                try {
+                    file = await heic2any({ blob: file, toType: 'image/jpeg' });
+                    ext = 'jpg';
+                } catch (conversionError) {
+                    throw new Error('Gagal mengonversi file HEIC: ' + conversionError.message);
+                }
+            }
+            
             const filename = `${nrp}_${Date.now()}.${ext}`;
             // Upload to bucket 'avatars'
             let uploadRes;
