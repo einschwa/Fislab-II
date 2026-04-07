@@ -50,6 +50,23 @@
     --dark-bg: var(--bg-primary-dark);
 }
 
+/* ======================================
+   HERO COMPONENT ANIMATIONS
+   ====================================== */
+@keyframes dashAnim {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.3;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;

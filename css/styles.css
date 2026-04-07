@@ -1,0 +1,68 @@
+ /* Global Styles */
+:root {
+    /* Colors - Light Mode */
+    --bg-primary: #ffffff;
+    --bg-secondary: #9dc9f5;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-primary: #3b82f6;
+    --accent-hover: #2563eb;
+    --border-color: #e2e8f0;
+    --card-bg: #ffffff;
+    
+    /* Colors - Dark Mode */
+    --bg-primary-dark: #0a0a0a;
+    --bg-secondary-dark: #1e293b;
+    --text-primary-dark: #ffffff;
+    --text-secondary-dark: #cbd5e1;
+    --accent-primary-dark: #3b82f6;
+    --accent-hover-dark: #60a5fa;
+    --border-color-dark: #334155;
+    --card-bg-dark: #1e293b;
+    
+    /* Legacy support (using new colors) */
+    --primary-gold: #3b82f6;
+    --dark-bg: #0a0a0a;
+    --text-color: #0f172a;
+    --white: #ffffff;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-full: 50%;
+    
+    /* Layout */
+    --sidebar-width: 260px;
+    --header-height: 64px;
+}
+
+:root.dark {
+    --text-color: var(--text-primary-dark);
+    --dark-bg: var(--bg-primary-dark);
+}
+
+/* ======================================
+   HERO COMPONENT ANIMATIONS
+   ====================================== */
+@keyframes dashAnim {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.3;
+    }
+}
