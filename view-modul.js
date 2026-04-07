@@ -18,11 +18,22 @@
   const assistantsList = document.getElementById('assistants-list');
   const prevBtn = document.getElementById('prev-mod');
   const nextBtn = document.getElementById('next-mod');
+  const downloadBtn = document.getElementById('download-modul');
   const moduleCodeEl = document.getElementById('module-code');
   const moduleNameEl = document.getElementById('module-name');
 
   // Ordered cyclic list of modules (MP then W)
   const moduleOrder = ['MP1','MP2','MP3','MP4','MP5','W1','W2','W3','W4','W5'];
+
+  function downloadModulePDF(modId) {
+    const pdfUrl = `Modul Fislab 2/${modId}.pdf`;
+    const a = document.createElement('a');
+    a.href = pdfUrl;
+    a.download = `${modId}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
   function loadFragment(modId) {
     const url = `public/modul-html/${modId}.html`;
@@ -248,6 +259,12 @@
     nextBtn.onclick = () => { window.location.href = `view-modul.html?id=${next}`; };
     // disable prev if same (single-item set) — keep enabled for circular flow
     prevBtn.disabled = false; nextBtn.disabled = false;
+    
+    // Show and setup download button
+    if(downloadBtn) {
+      downloadBtn.style.display = 'flex';
+      downloadBtn.onclick = () => { downloadModulePDF(modId); };
+    }
   }
 
   if (!id) {
