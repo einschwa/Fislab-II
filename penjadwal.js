@@ -31,7 +31,8 @@
         ];
 
         // Aturan khusus: W2 (Determinasi Sudut Brewster) dan MP1 (Konstanta Planck) tidak boleh berada pada satu sesi yang sama
-        const CONFLICTING_PAIRS = [ ['W2', 'MP1'] ];
+        // Juga: W1 (Cincin Newton) dan W5 (Spektroskopi) tidak boleh berada pada satu sesi yang sama
+        const CONFLICTING_PAIRS = [ ['W2', 'MP1'], ['W1', 'W5'] ];
 
         function isFridayDate(dateStr) {
             if (!dateStr) return false;
