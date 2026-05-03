@@ -238,8 +238,8 @@
                                 used: countBookingsFor(tanggal, s, excludeKey),
                                 conflictWith: findConflictingModuleBooking(tanggal, s, modulId, excludeKey)
                             }))
-                                .filter(x => !x.sameModul && !x.conflictWith && x.used < 4)
-                                .map(x => `Sesi ${x.s.id} (${x.s.start}-${x.s.end}) tersisa ${4 - x.used}`);
+                                .filter(x => !x.sameModul && !x.conflictWith && x.used < 5)
+                                .map(x => `Sesi ${x.s.id} (${x.s.start}-${x.s.end}) tersisa ${5 - x.used}`);
                             tersediaEl.textContent = avail.length ? ('Sesi tersedia: ' + avail.join(', ')) : 'Semua sesi penuh atau diblokir (W2 dan MP1 tidak boleh satu sesi).';
                         }
 
@@ -284,7 +284,7 @@
                                         statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) tidak tersedia: bentrok dengan ${conflictModul} pada tanggal ${tanggal} (W2 dan MP1 tidak boleh satu sesi).`;
                                     } else {
                                         const used = countBookingsFor(tanggal, sesiObj, excludeKey);
-                                        const remaining = 4 - used;
+                                        const remaining = 5 - used;
                                         if (remaining <= 0){
                                             statusEl.textContent = `Sesi ${sesiObj.id} (${sesiObj.start}-${sesiObj.end}) penuh untuk tanggal ${tanggal}.`;
                                         } else {

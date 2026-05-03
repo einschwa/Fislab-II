@@ -175,6 +175,91 @@
             const nrp=document.getElementById('praktikan').value;
             if(modulId && nrp){ loadExistingScores(nrp, modulId); } else { clearScoreInputs(); }
         }
+        
+        // Fungsi manual save untuk menyimpan semua progress input nilai sekaligus
+        function manualSaveProgress(){
+            const modulId = _currentAssistantModul;
+            const nrp = document.getElementById('praktikan').value;
+            if(!modulId || !nrp){
+                alert('Silakan pilih kelompok dan praktikan terlebih dahulu.');
+                return;
+            }
+            
+            // Batalkan autosave timer jika ada
+            clearTimeout(autoSaveTimer);
+            
+            // Kumpulkan semua nilai dari form
+            const updateObj = { _updatedAt: Date.now(), _by: localStorage.getItem('fislab-nrp')||'' };
+            let hasAnyValue = false;
+            
+            // Simpan semua aspek
+            ASPEK.forEach(a => {
+                const el = document.getElementById(idFromKey(a.key));
+                if(!el) return;
+                const raw = el.value.trim();
+                let val;
+                if (raw === '') {
+                    val = null;
+                } else {
+                    val = clampScore(raw);
+                }
+                updateObj[a.key] = val;
+                if (val !== null) hasAnyValue = true;
+            });
+            
+            // Simpan plagiasi
+            const plagEl = document.getElementById('plagiasi-ai');
+            if(plagEl){
+                const raw = plagEl.value.trim();
+                let val;
+                if (raw === '') {
+                    val = null;
+                } else {
+                    val = clampScore(raw);
+                }
+                updateObj['plagiasi, dan tidak bisa mengurai AI'] = val;
+                if (val !== null) hasAnyValue = true;
+            }
+            
+            // Simpan catatan
+            const catEl = document.getElementById('catatan');
+            if(catEl){
+                const raw = catEl.value.trim();
+                updateObj['catatan'] = raw === '' ? null : raw.slice(0, 4000);
+                if (updateObj['catatan'] !== null) hasAnyValue = true;
+            }
+            
+            if(!hasAnyValue){
+                alert('Tidak ada nilai yang akan disimpan.');
+                return;
+            }
+            
+            // Simpan ke database
+            database.ref(`users/${nrp}/nilai/${modulId}`).update(updateObj).then(()=>{
+                // Ambil data terbaru dan hitung total
+                database.ref(`users/${nrp}/nilai/${modulId}`).once('value').then(snap=>{
+                    const nilaiData = snap.val() || {};
+                    const finalTotal = computeFinalTotal(nilaiData);
+                    if (finalTotal !== null) {
+                        database.ref(`users/${nrp}/nilai/${modulId}/total`).set(finalTotal).catch(()=>{});
+                    }
+                }).catch(()=>{});
+                
+                // Tampilkan notifikasi sukses
+                const btn = document.getElementById('save-progress');
+                if(btn){
+                    const originalText = btn.textContent;
+                    btn.textContent = '✓ Tersimpan!';
+                    btn.style.backgroundColor = '#4CAF50';
+                    setTimeout(()=>{
+                        btn.textContent = originalText;
+                        btn.style.backgroundColor = '';
+                    }, 2000);
+                }
+            }).catch(err => {
+                alert('Gagal menyimpan progress: ' + (err && err.message ? err.message : err));
+            });
+        }
         /* === End tambahan === */
 
         // ====== Export nilai ke XLSX ======
@@ -660,6 +745,12 @@
                         if (exportAllBtn){
                             exportAllBtn.disabled = false;
                             exportAllBtn.addEventListener('click', ()=> exportAllGradesXLSX(allData));
+                        }
+                        
+                        // Wire up manual save button
+                        const saveProgressBtn = document.getElementById('save-progress');
+                        if (saveProgressBtn){
+                            saveProgressBtn.addEventListener('click', manualSaveProgress);
                         }
 
                         populateFormOptions(allData, loggedInNrp);
